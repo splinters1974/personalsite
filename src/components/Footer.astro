@@ -1,0 +1,38 @@
+---
+import { site } from '../data/site';
+import T from './T.astro';
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="wrap top">
+    <div>
+      <p class="label kicker">Next step</p>
+      <p class="big">Have a commercial challenge worth discussing?</p>
+    </div>
+    <div class="actions">
+      <a class="btn" href={`mailto:${site.email}`}>Email me <span class="arrow" aria-hidden="true">→</span></a>
+      <a class="btn btn--ghost on-band" href={site.linkedin} rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+  <div class="wrap bottom">
+    <p>© {year} {site.name}. {site.location}.</p>
+    <p class="note">Independent projects on this site are personal work. They are not products of, affiliated with or endorsed by Ameresco.</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer { background: var(--band); color: var(--band-ink); margin-top: var(--s-9); }
+  .top { display: grid; grid-template-columns: minmax(0, 1.6fr) auto; gap: var(--s-6); align-items: end; padding-block: var(--s-8) var(--s-7); border-bottom: 1px solid var(--band-rule); }
+  .site-footer .label { color: var(--band-ink-2); }
+  .site-footer .kicker::before { background: var(--band-red); }
+  .big { font: 760 var(--step-4)/1.02 var(--font-display); font-stretch: 125%; letter-spacing: -0.02em; margin-top: var(--s-4); max-width: 18ch; text-wrap: balance; }
+  .actions { display: flex; flex-wrap: wrap; gap: var(--s-3); }
+  .site-footer .btn { background: var(--band-red); border-color: var(--band-red); color: #08111f; }
+  .site-footer .btn:hover { background: transparent; color: var(--band-red); }
+  .site-footer .btn--ghost { background: transparent; color: var(--band-ink); border-color: var(--band-ink); }
+  .site-footer .btn--ghost:hover { background: var(--band-ink); color: var(--band); }
+  .bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--s-3) var(--s-6); padding-block: var(--s-5) var(--s-6); font-size: var(--step--1); color: var(--band-ink-2); }
+  .bottom p { margin: 0; }
+  .note { max-width: 36rem; }
+  @media (max-width: 52rem) { .top { grid-template-columns: 1fr; } }
+</style>

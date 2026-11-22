@@ -1,0 +1,14 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Gate from '../../../components/Gate.astro';
+---
+<Base title="Private project" noindex bare>
+  <Gate
+    heading="This project is shared privately."
+    intro="Enter the password you were given for this project. It only opens this project."
+    field="Project password"
+  >
+    <p class="alt muted">Sent an invitation link? Open it directly and you will not need a password.</p>
+  </Gate>
+</Base>
+<style>.alt { margin-top: var(--s-6); font-size: var(--step--1); }</style>

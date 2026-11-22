@@ -1,0 +1,7 @@
+---
+import { tbc } from '../data/text';
+interface Props { text: string; as?: string; class?: string; [key: string]: unknown }
+const { text, as = 'span', class: cls, ...rest } = Astro.props;
+const Tag = as as any;
+---
+<Tag class={cls} {...rest} set:html={tbc(text)} />

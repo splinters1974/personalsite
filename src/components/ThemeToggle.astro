@@ -1,0 +1,11 @@
+<button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch colour mode">
+  <svg class="sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+  <svg class="moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+</button>
+<style>
+  .theme-toggle { display: inline-grid; place-items: center; width: 2.5rem; height: 2.5rem; border: 1px solid var(--rule); border-radius: var(--radius); background: transparent; color: var(--ink); cursor: pointer; }
+  .theme-toggle:hover { border-color: var(--red); color: var(--red); }
+  .theme-toggle .sun { display: none; }
+  .theme-toggle[data-mode='dark'] .sun { display: block; }
+  .theme-toggle[data-mode='dark'] .moon { display: none; }
+</style>

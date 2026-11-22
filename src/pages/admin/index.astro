@@ -1,0 +1,94 @@
+---
+import Admin from '../../layouts/Admin.astro';
+import { projects } from '../../data/site';
+import { plain } from '../../data/text';
+const counts = {
+  Total: projects.length,
+  Public: projects.filter((p) => p.visibility === 'public').length,
+  Private: projects.filter((p) => p.visibility === 'private').length,
+  Draft: projects.filter((p) => p.visibility === 'draft').length,
+  Archived: projects.filter((p) => p.visibility === 'archived').length,
+};
+const usedGb = 1.4, capGb = 10;
+---
+<Admin title="Overview" section="overview">
+  <div class="a-head">
+    <div><p class="label">Admin</p><h1>Overview</h1></div>
+    <a class="btn" href="/admin/projects/edit/">New project</a>
+  </div>
+
+  <dl class="stats">
+    {Object.entries(counts).map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
+  </dl>
+
+  <div class="two">
+    <section class="panel">
+      <h2>Storage</h2>
+      <p class="big">{usedGb} GB <span class="muted">of {capGb} GB free allowance</span></p>
+      <meter class="meter" min="0" max={capGb} low={capGb * 0.8} high={capGb * 0.9} value={usedGb} aria-label="Storage used">{usedGb} GB</meter>
+      <p class="hint">Warning at 80%. Files up to 50 MB each. Sample figures.</p>
+    </section>
+    <section class="panel">
+      <h2>Backups</h2>
+      <p class="big ok">Last backup succeeded</p>
+      <p class="hint">Today 03:00. Database and files. 7 restore points kept. <a href="#">View log</a></p>
+      <p class="hint">Last tested restore: <span class="tbc">not yet run</span></p>
+    </section>
+  </div>
+
+  <section class="panel">
+    <h2>Projects</h2>
+    <div class="tbl-scroll">
+      <table class="tbl">
+        <thead><tr><th>Name</th><th>Visibility</th><th>Hosting</th><th>Updated</th><th><span class="visually-hidden">Actions</span></th></tr></thead>
+        <tbody>
+          {projects.map((p) => (
+            <tr>
+              <td><a href="/admin/projects/edit/">{p.name}</a><br /><span class="hint">{p.type}</span></td>
+              <td><span class={`tag ${p.visibility}`}>{p.visibility}</span></td>
+              <td class="hint">{p.link?.protection === 'portal-only' ? 'External, portal-controlled discovery only' : p.link?.protection === 'end-to-end' ? 'End-to-end protected' : 'External, public'}</td>
+              <td class="hint">{plain(p.updated)}</td>
+              <td><a href="/admin/projects/edit/">Edit</a></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="two">
+    <section class="panel">
+      <h2>Live invitations</h2>
+      <table class="tbl">
+        <thead><tr><th>Recipient</th><th>Project</th><th>Expires</th></tr></thead>
+        <tbody>
+          <tr><td>Tester A</td><td>Hospital Energy Insights</td><td>in 6 days</td></tr>
+          <tr><td>Tester B (email-locked)</td><td>Hospital Energy Insights</td><td>in 13 days</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section class="panel">
+      <h2>Recent changes</h2>
+      <ul class="log">
+        <li><span class="hint">Today 09:12</span> Invitation created for Tester B</li>
+        <li><span class="hint">Yesterday</span> HH Insights screenshot replaced</li>
+        <li><span class="hint">3 days ago</span> Hospital Energy Insights password changed. 2 sessions ended.</li>
+      </ul>
+    </section>
+  </div>
+</Admin>
+<style>
+  .stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--s-3); margin: 0 0 var(--s-5); }
+  .stats div { border: 1px solid var(--rule); border-radius: var(--radius); padding: var(--s-4); }
+  .stats dt { font-size: var(--step--1); color: var(--ink-3); }
+  .stats dd { margin: 0; font: 800 var(--step-3)/1.1 var(--font-display); font-stretch: 125%; }
+  .stats div:first-child { border-top: 3px solid var(--red); }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-5); }
+  .big { font-family: var(--font-display); font-weight: 720; font-stretch: 125%; letter-spacing: -0.015em; font-size: var(--step-2); margin-bottom: var(--s-3); }
+  .big .muted { font-family: var(--font-text); font-size: var(--step--1); }
+  .ok { color: var(--ok); }
+  .meter { display: block; width: 100%; height: 10px; margin-bottom: var(--s-3); accent-color: var(--red); }
+  .log { list-style: none; margin: 0; padding: 0; font-size: 0.92rem; }
+  .log li { padding-block: var(--s-2); border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 6.5rem 1fr; gap: var(--s-3); }
+  @media (max-width: 52rem) { .stats { grid-template-columns: repeat(3, 1fr); } .two { grid-template-columns: 1fr; gap: 0; } }
+</style>

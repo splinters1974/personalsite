@@ -1,0 +1,46 @@
+---
+import Base from '../layouts/Base.astro';
+import T from '../components/T.astro';
+import { about } from '../data/site';
+---
+<Base title="About" description="About Martyn Sheridan: nearly 30 years in sales, 15 in energy, board roles at eEnergy, Ylem, Shawton and Grid Edge, and a rugby coach on Saturdays.">
+  <article class="wrap about">
+    <header class="head">
+      <p class="label kicker">About</p>
+      <h1>{about.headline}</h1>
+    </header>
+    <figure class="portrait">
+      <div class="placeholder-img" role="img" aria-label="Photograph of Martyn Sheridan, to be supplied">Photograph to supply</div>
+      <figcaption class="label">Hampshire, UK</figcaption>
+    </figure>
+    <div class="body">
+      {about.paragraphs.map((p, i) => <T text={p} as="p" class={i === 0 ? 'lede' : ''} />)}
+      <h2 class="label sub">Outside work</h2>
+      <ul class="interests">
+        {about.interests.map((x) => <li><T text={x} /></li>)}
+      </ul>
+      <p class="aside muted">
+        My independent projects are personal work, separate from my role at Ameresco UK.
+        See <a href="/projects/">projects</a>, or my <a href="/experience/">track record</a> for the career side.
+      </p>
+    </div>
+  </article>
+</Base>
+<style>
+  .about { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--s-5); padding-top: var(--s-8); }
+  .head { grid-column: 1 / 10; margin-bottom: var(--s-7); }
+  .head .label { margin-bottom: var(--s-4); }
+  h1 { font-size: var(--step-4); letter-spacing: -0.02em; }
+  .portrait { grid-column: 1 / 4; margin: 0; position: sticky; top: var(--s-5); align-self: start; }
+  .portrait .placeholder-img { aspect-ratio: 4 / 5; }
+  .portrait figcaption { margin-top: var(--s-2); }
+  .body { grid-column: 5 / 12; max-width: var(--measure); }
+  .sub { margin-top: var(--s-7); margin-bottom: var(--s-3); }
+  .interests { list-style: none; padding: 0; margin: 0 0 var(--s-6); border-top: 1px solid var(--rule); }
+  .interests li { padding-block: var(--s-3); border-bottom: 1px solid var(--rule); font-weight: 560; font-size: var(--step-0); }
+  .aside { font-size: var(--step--1); }
+  @media (max-width: 48rem) {
+    .head, .body { grid-column: 1 / -1; }
+    .portrait { grid-column: 1 / 6; position: static; margin-bottom: var(--s-6); }
+  }
+</style>

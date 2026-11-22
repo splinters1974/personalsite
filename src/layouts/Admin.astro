@@ -1,0 +1,91 @@
+---
+import '../styles/global.css';
+import ProtoBar from '../components/ProtoBar.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
+interface Props { title: string; section: string }
+const { title, section } = Astro.props;
+const nav = [
+  { id: 'overview', label: 'Overview', href: '/admin/' },
+  { id: 'projects', label: 'Projects', href: '/admin/projects/edit/' },
+  { id: 'content', label: 'Site content' },
+  { id: 'files', label: 'Files' },
+  { id: 'sharing', label: 'Sharing' },
+  { id: 'cv', label: 'Private CV' },
+  { id: 'backups', label: 'Backups' },
+];
+---
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>{title} · Admin</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script is:inline src="/theme.js"></script>
+  </head>
+  <body class="admin">
+    <a class="skip" href="#main">Skip to content</a>
+    <ProtoBar />
+    <div class="shell">
+      <aside class="side">
+        <a class="brand" href="/">Martyn Sheridan</a>
+        <p class="label">Admin</p>
+        <nav aria-label="Admin">
+          <ul>
+            {nav.map((n) => (
+              <li>
+                {n.href
+                  ? <a href={n.href} aria-current={section === n.id ? 'page' : undefined}>{n.label}</a>
+                  : <span class="todo" title="Concept only">{n.label}</span>}
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <div class="who"><ThemeToggle /><p>Signed in with two-factor<br /><a href="#">Sign out</a></p></div>
+      </aside>
+      <main id="main" tabindex="-1" class="content"><slot /></main>
+    </div>
+  </body>
+</html>
+<style is:global>
+  .admin { background: var(--bg); color: var(--ink); }
+  .shell { display: grid; grid-template-columns: 14rem minmax(0, 1fr); min-height: 100vh; }
+  .side { background: var(--surface-2); border-right: 1px solid var(--rule); padding: var(--s-5); display: flex; flex-direction: column; gap: var(--s-3); }
+  .brand { font: 760 0.9rem/1.2 var(--font-display); font-stretch: 125%; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink); text-decoration: none; border-left: 4px solid var(--red); padding-left: var(--s-3); }
+  .side ul { list-style: none; padding: 0; margin: var(--s-3) 0 0; display: grid; gap: 2px; }
+  .side a, .side .todo { display: block; padding: 0.45rem 0.6rem; border-radius: var(--radius); font-size: 0.92rem; color: var(--ink-2); text-decoration: none; }
+  .side a:hover { background: var(--surface-2); color: var(--ink); }
+  .side a[aria-current='page'] { background: var(--red); color: var(--red-ink); }
+  .side .todo { color: var(--ink-3); }
+  .who { margin-top: auto; font-size: var(--step--1); color: var(--ink-3); }
+  .content { padding: var(--s-6) clamp(var(--s-4), 3vw, var(--s-7)) var(--s-8); max-width: 72rem; }
+  .a-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: var(--s-4); margin-bottom: var(--s-6); }
+  .a-head h1 { font-size: var(--step-3); }
+  .who { display: grid; gap: var(--s-3); }
+  .who p { margin: 0; }
+  .panel { border: 1px solid var(--rule); border-radius: var(--radius); padding: var(--s-5); margin-bottom: var(--s-5); background: var(--surface); }
+  .panel > h2 { font: 600 var(--step-0)/1.3 var(--font-text); margin-bottom: var(--s-4); }
+  .tbl { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+  .tbl th { text-align: left; font-weight: 560; color: var(--ink-3); font-size: var(--step--1); padding: var(--s-2) var(--s-3) var(--s-2) 0; border-bottom: 1px solid var(--rule-strong); }
+  .tbl td { padding: var(--s-3) var(--s-3) var(--s-3) 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  .tag { display: inline-block; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; padding: 0.15rem 0.45rem; border-radius: 2px; border: 1px solid currentColor; }
+  .tag.public { color: var(--ok); }
+  .tag.private { color: var(--navy); }
+  .tag.draft { color: var(--ink-3); }
+  .tag.unlisted { color: var(--warn); }
+  .tag.archived { color: var(--ink-3); border-style: dashed; }
+  .field { display: grid; gap: var(--s-2); margin-bottom: var(--s-4); }
+  .field label, .field legend { font-weight: 560; font-size: 0.92rem; }
+  .field input, .field textarea, .field select { padding: 0.6em 0.75em; border: 1px solid var(--rule-strong); border-radius: var(--radius); background: var(--surface); width: 100%; }
+  .hint { font-size: var(--step--1); color: var(--ink-3); }
+  .warn-box { border-left: 3px solid var(--warn); background: var(--surface-2); padding: var(--s-3) var(--s-4); font-size: 0.92rem; }
+  @media (max-width: 52rem) {
+    .shell { grid-template-columns: minmax(0, 1fr); }
+    .tbl td, .tbl th { padding-right: var(--s-2); }
+    .side { border-right: 0; border-bottom: 1px solid var(--rule); }
+    .side ul { display: flex; flex-wrap: wrap; gap: var(--s-1); }
+    .who { margin-top: var(--s-2); }
+    .tbl-scroll { overflow-x: auto; }
+  }
+</style>

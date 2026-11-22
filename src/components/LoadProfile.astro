@@ -1,0 +1,84 @@
+---
+/**
+ * Illustrative half-hourly demand profile for a commercial site, before and
+ * after optimisation. Shape only: not real customer data.
+ */
+interface Props { compact?: boolean; id?: string }
+const { compact = false, id = 'lp' } = Astro.props;
+
+const before: number[] = [];
+const after: number[] = [];
+for (let i = 0; i < 48; i++) {
+  const h = i / 2;
+  let v = 0.32 + 0.03 * Math.sin(i);
+  if (h >= 6 && h < 8.5) v = 0.32 + ((h - 6) / 2.5) * 0.5;
+  if (h >= 8.5 && h < 16) v = 0.8 + 0.06 * Math.sin(h / 1.3) - (h > 11 && h < 14 ? 0.05 : 0);
+  if (h >= 16 && h < 19) v = 0.92 + 0.05 * Math.sin(h * 2);
+  if (h >= 19 && h < 22) v = 0.92 - ((h - 19) / 3) * 0.55;
+  if (h >= 22) v = 0.36;
+  before.push(v);
+  // After: solar offsets midday, battery shaves the evening peak
+  let a = v * 0.9;
+  if (h >= 9 && h < 16) a = v - 0.28 * Math.sin(((h - 9) / 7) * Math.PI);
+  if (h >= 16 && h < 19) a = v - 0.3;
+  if (h >= 19 && h < 20.5) a = v - 0.3 + ((h - 19) / 1.5) * 0.22;
+  after.push(a);
+}
+const W = 480, H = 200, base = 172, scale = 150, bw = 10;
+const x = (i: number) => i * bw;
+const y = (v: number) => base - v * scale;
+const line = after.map((v, i) => `${i ? 'L' : 'M'}${(x(i) + bw / 2).toFixed(1)} ${y(v).toFixed(1)}`).join(' ');
+const ticks = [0, 6, 12, 18, 24];
+---
+<figure class={`lp ${compact ? 'compact' : ''}`} aria-labelledby={`${id}-cap`}>
+  <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-labelledby={`${id}-t`} preserveAspectRatio="none">
+    <title id={`${id}-t`}>Illustrative daily demand: grey bars before, red line after solar and battery optimisation. The evening peak drops by around a third.</title>
+    <rect class="peak" x={x(32)} y="8" width={bw * 6} height={base - 8} />
+    <text class="peak-t" x={x(32) + 4} y="20">PEAK</text>
+    {[0.25, 0.5, 0.75, 1].map((g) => <line class="grid" x1="0" x2={W} y1={y(g)} y2={y(g)} />)}
+    <g class="bars">
+      {before.map((v, i) => (
+        <rect x={x(i) + 1.5} y={y(v)} width={bw - 3} height={base - y(v)} />
+      ))}
+    </g>
+    <path class="after" d={line} pathLength="1" />
+    <line class="axis" x1="0" x2={W} y1={base} y2={base} />
+    {ticks.map((t) => (
+      <text class="tick" x={Math.min(Math.max(t * 2 * bw, 12), W - 14)} y={H - 6} text-anchor="middle">{String(t).padStart(2, '0')}:00</text>
+    ))}
+  </svg>
+  <figcaption id={`${id}-cap`}>
+    <span><i class="key k-before"></i>Half-hourly demand, before</span>
+    <span><i class="key k-after"></i>After solar + battery</span>
+    <span class="illus">Illustrative</span>
+  </figcaption>
+</figure>
+
+<style>
+  .lp { margin: 0; }
+  svg { width: 100%; height: auto; aspect-ratio: 480 / 200; display: block; overflow: visible; }
+  .grid { stroke: rgba(143, 176, 227, 0.12); stroke-width: 1; }
+  .axis { stroke: rgba(238, 241, 246, 0.4); stroke-width: 1; }
+  .bars rect { fill: rgba(143, 176, 227, 0.38); transform-box: fill-box; transform-origin: bottom; }
+  .peak { fill: rgba(255, 77, 94, 0.08); }
+  .peak-t { fill: #ff4d5e; font: 500 9px var(--font-mono); letter-spacing: 0.1em; }
+  .after { fill: none; stroke: #ff4d5e; stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; }
+  .tick { fill: #a9b4c7; font: 400 9px var(--font-mono); }
+  figcaption { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-5); margin-top: var(--s-3); font: 400 var(--step--2)/1.4 var(--font-mono); letter-spacing: 0.06em; color: #a9b4c7; text-transform: uppercase; }
+  .key { display: inline-block; width: 14px; height: 8px; margin-right: 8px; vertical-align: middle; }
+  .k-before { background: rgba(143, 176, 227, 0.5); }
+  .k-after { height: 3px; background: #ff4d5e; }
+  .illus { margin-left: auto; color: #6f7c93; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .bars rect { animation: grow 700ms var(--ease) both; }
+    .bars rect:nth-child(n + 9) { animation-delay: 90ms; }
+    .bars rect:nth-child(n + 17) { animation-delay: 180ms; }
+    .bars rect:nth-child(n + 25) { animation-delay: 270ms; }
+    .bars rect:nth-child(n + 33) { animation-delay: 360ms; }
+    .bars rect:nth-child(n + 41) { animation-delay: 450ms; }
+    .after { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 1400ms 700ms var(--ease) forwards; }
+  }
+  @keyframes grow { from { transform: scaleY(0.05); } to { transform: scaleY(1); } }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+</style>
