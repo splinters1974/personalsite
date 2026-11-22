@@ -14,7 +14,7 @@ import { live } from './text';
 export const site = {
   name: 'Martyn Sheridan',
   url: 'https://energyprojects.online/personal-projects/',
-  email: 'enquiries@energyprojects.online',
+  email: 'martyn@energyprojects.online',
   linkedin: 'https://www.linkedin.com/in/martynsheridan',
   location: 'Hampshire, UK',
   role: 'Commercial & Sales Director',
