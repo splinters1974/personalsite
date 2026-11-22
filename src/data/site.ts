@@ -13,8 +13,8 @@ import { live } from './text';
 
 export const site = {
   name: 'Martyn Sheridan',
-  url: 'https://martynsheridan.com',
-  email: 'martyn@martynsheridan.com',
+  url: 'https://energyprojects.online/personal-projects/',
+  email: 'enquiries@energyprojects.online',
   linkedin: 'https://www.linkedin.com/in/martynsheridan',
   location: 'Hampshire, UK',
   role: 'Commercial & Sales Director',
@@ -255,18 +255,18 @@ export const projects: Project[] = [
     slug: 'uk-solar-calculator',
     name: 'UK Solar Calculator',
     type: 'Calculator',
-    status: '[[Status to confirm]]',
+    status: 'Live website',
     visibility: 'public',
     featured: true,
-    updated: '[[Month Year]]',
+    updated: '[[Date to confirm]]',
     layout: 'feature',
     summary:
-      '[[A web calculator for estimating solar PV generation and savings for UK sites. Confirm description.]]',
+      'I wanted a straightforward way to explore what rooftop solar could mean for a UK property, without starting with a sales pitch.',
     purpose:
-      '[[What problem it solves and why it was built. Two or three sentences.]]',
-    audience: '[[Who it is for]]',
-    features: ['[[Feature one]]', '[[Feature two]]', '[[Feature three]]'],
-    link: { url: '#', label: 'Open the calculator', protection: 'none' },
+      'There is no shortage of information about solar, but not all of it is easy to make sense of. I built this to make the first questions easier to explore.',
+    audience: 'People exploring solar in the UK',
+    features: ['UK-focused solar estimates', 'A starting point for understanding the potential of a rooftop system', '[[Detailed functionality and assumptions to confirm]]'],
+    link: { url: 'https://uksolarcalculator.co.uk/', label: 'Open the calculator', protection: 'none' },
   },
   {
     slug: 'hh-insights',
@@ -278,13 +278,13 @@ export const projects: Project[] = [
     updated: '[[Month Year]]',
     layout: 'notes',
     summary:
-      '[[A tool for turning half-hourly meter data into usable insight. Confirm description.]]',
+      'HH Insights is an independent project exploring what half-hourly electricity data can tell us about how a site uses energy.',
     purpose:
-      '[[What problem it solves and why it was built. Two or three sentences.]]',
-    audience: '[[Who it is for]]',
-    features: ['[[Feature one]]', '[[Feature two]]', '[[Feature three]]'],
-    link: { url: '#', label: 'Visit HH Insights', protection: 'none' },
-    documents: [{ name: '[[Overview document]].pdf', size: '1.2 MB' }],
+      'Half-hourly data can be useful, but most people do not want to spend hours looking through spreadsheets. The aim is to make that information easier to work with.',
+    audience: 'People working with half-hourly electricity data',
+    features: ['Focus on UK half-hourly electricity consumption', 'Clearer presentation of detailed usage information', '[[Detailed functionality and upload arrangements to confirm]]'],
+    link: { url: 'https://hhinsights.co.uk/', label: 'Visit HH Insights', protection: 'none' },
+    
   },
   {
     slug: 'hospital-energy-insights',
