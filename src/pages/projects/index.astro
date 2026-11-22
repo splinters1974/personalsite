@@ -17,7 +17,7 @@ import { publicProjects } from '../../data/site';
     {publicProjects.length > 0 && <table class="index">
       <caption class="visually-hidden">Public projects</caption>
       <thead>
-        <tr><th scope="col">No.</th><th scope="col">Project</th><th scope="col">Type</th><th scope="col">Status</th><th scope="col">Updated</th></tr>
+        <tr><th scope="col">No.</th><th scope="col">Project</th><th scope="col">Type</th><th scope="col">Status</th></tr>
       </thead>
       <tbody>
         {publicProjects.map((p, i) => (
@@ -29,7 +29,6 @@ import { publicProjects } from '../../data/site';
             </th>
             <td data-label="Type">{p.type}</td>
             <td data-label="Status"><T text={p.status} /></td>
-            <td data-label="Updated"><T text={p.updated} /></td>
           </tr>
         ))}
       </tbody>
