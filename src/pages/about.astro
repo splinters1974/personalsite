@@ -4,7 +4,7 @@ import T from '../components/T.astro';
 import { about } from '../data/site';
 import { PROTO } from '../data/text';
 ---
-<Base title="About" description="About Martyn Sheridan: nearly 30 years in sales, 15 in energy, board roles at eEnergy, Ylem, Shawton and Grid Edge, and a rugby coach on Saturdays.">
+<Base title="About" description="About Martyn Sheridan, from advertising sales to commercial leadership in energy, with an interest in rugby, film and building digital tools.">
   <article class="wrap about">
     <header class="head">
       <p class="label kicker">About</p>
@@ -21,7 +21,7 @@ import { PROTO } from '../data/text';
         {about.interests.map((x) => <li><T text={x} /></li>)}
       </ul>
       <p class="aside muted">
-        My independent projects are personal work, separate from my role at Ameresco UK.
+        The websites and tools here are my own projects, not part of my job at Ameresco UK.
         See <a href="/projects/">projects</a>, or my <a href="/experience/">track record</a> for the career side.
       </p>
     </div>
