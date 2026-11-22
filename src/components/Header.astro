@@ -62,7 +62,7 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWi
       <div>
         <p class="label">Get in touch</p>
         <p><a href={`mailto:${site.email}`}>{site.email}</a></p>
-        <p><a href="/contact/">LinkedIn</a></p>
+        <p><a href={site.linkedin} rel="noopener">LinkedIn</a></p>
       </div>
       <div>
         <p class="label">Based in</p>

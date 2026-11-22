@@ -1,14 +1,14 @@
 ---
 import Base from '../layouts/Base.astro';
 import T from '../components/T.astro';
-import { experience, qualifications } from '../data/site';
+import { experience, qualifications, site } from '../data/site';
 ---
-<Base title="Track record" description="Selected career summary for Martyn Sheridan, Commercial & Sales Director at Ameresco UK.">
+<Base title="Track record" description="Martyn Sheridan’s track record: Ameresco UK, Centrica, Shawton Energy, Ylem Energy, eEnergy and E.ON, with board and non-executive roles.">
   <div class="wrap exp">
     <header class="head">
       <p class="label kicker">Track record</p>
-      <h1>Around thirty years in sales and commercial roles, fifteen of them in energy.</h1>
-      <p class="lede">A selective summary. The full history is on <a href="/contact/">LinkedIn</a>.</p>
+      <h1>Nearly 30 years in sales. 15 in energy. Four boards.</h1>
+      <p class="lede">From blue-chip corporates to private equity-backed growth businesses, the job has been the same: build the pipeline, build the team, close. The full history is on <a href={site.linkedin} rel="noopener">LinkedIn</a>.</p>
     </header>
 
     <ol class="timeline">
@@ -19,14 +19,14 @@ import { experience, qualifications } from '../data/site';
             <h2><T text={e.role} /></h2>
             <T text={e.org} as="p" class="org" />
             <T text={e.summary} as="p" class="muted summary" />
-            <ul class="wins">{e.wins.map((w) => <li><T text={w} /></li>)}</ul>
+            {e.wins.length > 0 && <ul class="wins">{e.wins.map((w) => <li><T text={w} /></li>)}</ul>}
           </div>
         </li>
       ))}
     </ol>
 
     <section class="quals" aria-labelledby="q-h">
-      <h2 id="q-h" class="label">Qualifications and memberships</h2>
+      <h2 id="q-h" class="label">Education and training</h2>
       <ul>{qualifications.map((q) => <li><T text={q} /></li>)}</ul>
     </section>
   </div>

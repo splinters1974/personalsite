@@ -6,14 +6,14 @@ import { site } from '../data/site';
 <Base title="Contact" description="Contact Martyn Sheridan by email or LinkedIn.">
   <div class="wrap contact">
     <p class="label kicker">Contact</p>
-    <h1>The best way to reach me is email.</h1>
+    <h1>Email is quickest. LinkedIn works too.</h1>
     <dl>
       <div><dt class="label">Email</dt><dd><a class="big" href={`mailto:${site.email}`}>{site.email}</a></dd></div>
-      <div><dt class="label">LinkedIn</dt><dd><T text={site.linkedin} class="big-ish" /></dd></div>
+      <div><dt class="label">LinkedIn</dt><dd><a class="big-ish" href={site.linkedin} rel="noopener">linkedin.com/in/martynsheridan</a></dd></div>
       <div><dt class="label">Based in</dt><dd class="big-ish">{site.location}</dd></div>
     </dl>
     <p class="muted note">
-      For anything about Ameresco UK projects, please contact me through Ameresco directly.
+      For anything about an Ameresco UK project, please go through Ameresco directly. This site is personal.
       If you have been invited to test a project, use the link you were sent.
     </p>
   </div>
@@ -25,7 +25,7 @@ import { site } from '../data/site';
   dl > div { display: grid; grid-template-columns: 10rem 1fr; gap: var(--s-4); padding-block: var(--s-5); border-bottom: 1px solid var(--rule); align-items: baseline; }
   dd { margin: 0; }
   .big { font-family: var(--font-display); font-weight: 720; font-stretch: 125%; letter-spacing: -0.015em; font-size: var(--step-3); overflow-wrap: anywhere; }
-  .big-ish { font-family: var(--font-display); font-weight: 720; font-stretch: 125%; letter-spacing: -0.015em; font-size: var(--step-2); }
+  .big-ish { overflow-wrap: anywhere; font-family: var(--font-display); font-weight: 720; font-stretch: 125%; letter-spacing: -0.015em; font-size: var(--step-2); }
   .note { margin-top: var(--s-6); max-width: var(--measure); font-size: var(--step--1); }
   @media (max-width: 40rem) { .big { font-size: var(--step-2); } dl > div { grid-template-columns: 1fr; gap: var(--s-1); } }
 </style>
