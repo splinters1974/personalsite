@@ -19,6 +19,8 @@ Revised after your feedback that v1 was too middle of the road. The site now pit
 - **Homepage structure.** A sales argument in order: positioning headline and headline figures, the sectors you work in, four capability areas (sales, commercial, procurement, marketing), your sales process as five steps, your independent tools ("Built, not just sold"), About, then a "Start a conversation" close on every page.
 - **Proof, not claims.** The headline figures and key results per role are placeholders until you give real numbers. I won't invent figures or testimonials.
 - **Employer separation.** The call to action is a conversation, not "hire me", and a footer line on every page says independent projects aren't affiliated with or endorsed by Ameresco.
+- **v3 additions.** A signature chart in the hero: an illustrative half-hourly demand profile showing the evening peak shaved by solar and battery. It's specific to your world and to HH Insights. Also added: a red figures band, a scrolling sectors ticker, capabilities as an interactive panel, a red point-of-view statement band, the sales process drawn as deal stages, a photo strip, projects framed as browser windows, and a full-screen menu with large numbered links.
+- **Photography is the biggest remaining gap.** Real photos of you and of sites will do more than any further layout work. Stock photography is excluded by the brief.
 - **Accessibility.** All text pairs pass WCAG AA in both modes, focus states are visible, and motion is limited to hover details and respects reduced-motion settings.
 
 ## Sitemap

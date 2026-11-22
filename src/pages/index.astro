@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import T from '../components/T.astro';
+import LoadProfile from '../components/LoadProfile.astro';
 import { site, home, featuredProjects } from '../data/site';
 import { plain } from '../data/text';
 
@@ -16,95 +17,137 @@ const jsonld = {
 };
 ---
 <Base jsonld={jsonld} description={plain(home.intro)}>
-  <!-- Hero: always dark, in both themes -->
+  <!-- 1. Hero: headline + signature chart. Always dark. -->
   <section class="hero" aria-labelledby="hero-h">
-    <div class="wrap hero-grid">
-      <div class="hero-main">
-        <p class="label kicker">{site.role} · {site.employer}</p>
-        <h1 id="hero-h"><T text={home.headline} /></h1>
-        <T text={home.intro} as="p" class="hero-intro" />
-        <div class="hero-cta">
-          <a class="btn" href="/contact/">Start a conversation <span class="arrow" aria-hidden="true">→</span></a>
-          <a class="btn btn--ghost" href="/experience/">See the track record</a>
+    <div class="wrap">
+      <p class="label kicker">{site.role} · {site.employer}</p>
+      <h1 id="hero-h"><T text={home.headline} /></h1>
+      <div class="hero-row">
+        <div class="hero-copy">
+          <T text={home.intro} as="p" class="hero-intro" />
+          <div class="hero-cta">
+            <a class="btn" href="/contact/">Start a conversation <span class="arrow" aria-hidden="true">→</span></a>
+            <a class="btn btn--ghost" href="/experience/">Track record</a>
+          </div>
+        </div>
+        <div class="hero-chart">
+          <p class="label chart-head"><span>Where the value is</span><span>One site, one day</span></p>
+          <LoadProfile id="hero-lp" />
         </div>
       </div>
-
-      <aside class="sheet" aria-label="Headline figures">
-        <p class="label sheet-head"><span>Headline figures</span><span>{site.location}</span></p>
-        <dl>
-          {home.metrics.map((m) => (
-            <div class="metric">
-              <dt><T text={m.label} /></dt>
-              <dd><T text={m.value} class="num" /><span class="unit">{m.unit}</span></dd>
-            </div>
-          ))}
-        </dl>
-      </aside>
     </div>
   </section>
 
-  <div class="sectors" role="list" aria-label="Sectors">
-    <div class="wrap sectors-row">
-      {home.sectors.map((s) => <span role="listitem">{s}</span>)}
-    </div>
+  <!-- 2. Figures strip -->
+  <section class="figures" aria-label="Headline figures">
+    <dl class="wrap figs">
+      {home.metrics.map((m) => (
+        <div class="fig">
+          <dd><T text={m.value} /><span class="unit">{m.unit}</span></dd>
+          <dt><T text={m.label} /></dt>
+        </div>
+      ))}
+    </dl>
+  </section>
+
+  <!-- 3. Sector ticker -->
+  <div class="ticker" aria-label="Sectors">
+    <ul class="ticker-track">
+      {home.sectors.map((s) => <li>{s}</li>)}
+      {home.sectors.map((s) => <li aria-hidden="true">{s}</li>)}
+      {home.sectors.map((s) => <li aria-hidden="true">{s}</li>)}
+    </ul>
   </div>
 
-  <!-- Capability -->
+  <!-- 4. Capability: interactive split panel -->
   <section class="wrap block" aria-labelledby="cap-h">
     <div class="sec-head">
       <div>
         <p class="label kicker">What I bring</p>
-        <h2 id="cap-h">Four disciplines, one commercial outcome.</h2>
+        <h2 id="cap-h">Four disciplines. One number that matters: signed.</h2>
       </div>
       <p>Most energy deals stall between the technical case and the signed contract. My job is to close that gap: find the right opportunities, structure them so they stand up, and get them over the line.</p>
     </div>
-    <div class="caps">
-      {home.capabilities.map((c) => (
-        <article class="cap">
-          <span class="code" aria-hidden="true">{c.code}</span>
-          <h3>{c.title}</h3>
-          <p class="cap-line">{c.line}</p>
-          <ul>{c.points.map((p) => <li><T text={p} /></li>)}</ul>
-        </article>
-      ))}
-    </div>
-  </section>
-
-  <!-- Approach: a real sequence, so numbered -->
-  <section class="approach" aria-labelledby="ap-h">
-    <div class="wrap">
-      <div class="sec-head">
-        <div>
-          <p class="label kicker">How I sell</p>
-          <h2 id="ap-h">A disciplined process, run with conviction.</h2>
-        </div>
-        <p>Good selling is not charm. It is qualification, preparation and the nerve to negotiate properly.</p>
-      </div>
-      <ol class="steps">
-        {home.approach.map((a, i) => (
-          <li>
-            <span class="step-no">{String(i + 1).padStart(2, '0')}</span>
-            <h3>{a.step}</h3>
-            <T text={a.text} as="p" />
-          </li>
+    <div class="cap" data-tabs>
+      <div class="cap-list" role="tablist" aria-label="Disciplines">
+        {home.capabilities.map((c, i) => (
+          <button role="tab" id={`tab-${c.code}`} aria-controls={`panel-${c.code}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1} type="button">
+            <span class="cap-code" aria-hidden="true">{c.code}</span>
+            <span class="cap-name">{c.title}</span>
+            <span class="cap-arrow" aria-hidden="true">→</span>
+          </button>
         ))}
-      </ol>
+      </div>
+      <div class="cap-panels">
+        {home.capabilities.map((c, i) => (
+          <div class="cap-panel" role="tabpanel" id={`panel-${c.code}`} aria-labelledby={`tab-${c.code}`} hidden={i !== 0}>
+            <span class="ghost" aria-hidden="true">{c.code}</span>
+            <p class="label label--red">0{i + 1} / 04</p>
+            <h3>{c.title}</h3>
+            <p class="cap-line">{c.line}</p>
+            <ul>{c.points.map((p) => <li><T text={p} /></li>)}</ul>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 
-  <!-- Projects -->
+  <!-- 5. Statement band -->
+  <section class="pov" aria-label="Point of view">
+    <div class="wrap pov-inner">
+      <span class="quote" aria-hidden="true">“</span>
+      <p class="pov-text"><T text={home.pov} /></p>
+      <p class="pov-by label"><T text={home.povAttribution} /></p>
+    </div>
+  </section>
+
+  <!-- 6. Approach as deal stages -->
+  <section class="wrap block" aria-labelledby="ap-h">
+    <div class="sec-head">
+      <div>
+        <p class="label kicker">How I sell</p>
+        <h2 id="ap-h">Run every deal like it matters. Because it does.</h2>
+      </div>
+      <p>Good selling is not charm. It is qualification, preparation and the nerve to negotiate properly. Five stages, no shortcuts.</p>
+    </div>
+    <ol class="stages">
+      {home.approach.map((a, i) => (
+        <li>
+          <div class="chev"><span class="stage-no">Stage {i + 1}</span><span class="stage-name">{a.step}</span></div>
+          <T text={a.text} as="p" />
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <!-- 7. Photo strip -->
+  <section class="photos wrap" aria-label="Photography">
+    {home.photos.map((ph, i) => (
+      <figure class={`photo ph-${ph.ratio}`}>
+        <div class="ph-frame placeholder-img" role="img" aria-label="Photograph to be supplied">
+          <span>Photo {i + 1} to supply</span>
+        </div>
+        <figcaption class="label"><T text={ph.caption} /></figcaption>
+      </figure>
+    ))}
+  </section>
+
+  <!-- 8. Projects -->
   <section class="wrap block" aria-labelledby="work-h">
     <div class="sec-head">
       <div>
         <p class="label kicker">Independent projects</p>
         <h2 id="work-h">Built, not just sold.</h2>
       </div>
-      <p>Practical digital tools I build in my own time, mostly about energy data and the commercial decisions that follow from it. <a href="/projects/">All projects</a></p>
+      <p>Practical tools I build in my own time, mostly about energy data and the commercial decisions that follow from it. <a href="/projects/">All projects</a></p>
     </div>
     <div class="work">
       {featuredProjects.map((p, i) => (
-        <a href={`/projects/${p.slug}/`} class={`work-item ${i === 0 ? 'lead' : ''}`}>
-          <div class="placeholder-img shot" aria-hidden="true">Screenshot to supply</div>
+        <a href={`/projects/${p.slug}/`} class={`work-item w-${i}`}>
+          <div class="browser" aria-hidden="true">
+            <div class="browser-bar"><i></i><i></i><i></i><span>{p.slug}.app</span></div>
+            {i === 0 ? <div class="browser-body"><LoadProfile compact id={`w-lp-${i}`} /></div> : <div class="browser-body placeholder-img">Screenshot to supply</div>}
+          </div>
           <div class="work-meta">
             <span class="label label--red">{p.type}</span>
             <h3>{p.name}</h3>
@@ -116,9 +159,12 @@ const jsonld = {
     </div>
   </section>
 
-  <!-- About -->
+  <!-- 9. About -->
   <section class="wrap about-teaser" aria-labelledby="about-h">
-    <div class="placeholder-img photo" role="img" aria-label="Photograph of Martyn Sheridan, to be supplied">Photo to supply</div>
+    <div class="photo-slot">
+      <div class="placeholder-img portrait" role="img" aria-label="Photograph of Martyn Sheridan, to be supplied">Portrait to supply</div>
+      <span class="corner" aria-hidden="true"></span>
+    </div>
     <div>
       <p class="label kicker">About</p>
       <h2 id="about-h">Straight talking. Commercially minded. Builds things.</h2>
@@ -128,101 +174,194 @@ const jsonld = {
   </section>
 </Base>
 
+<script>
+  // Accessible tabs: click, arrow keys, Home/End.
+  document.querySelectorAll<HTMLElement>('[data-tabs]').forEach((root) => {
+    const tabs = Array.from(root.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
+    const select = (t: HTMLButtonElement, focus = false) => {
+      tabs.forEach((x) => {
+        const on = x === t;
+        x.setAttribute('aria-selected', String(on));
+        x.tabIndex = on ? 0 : -1;
+        const panel = document.getElementById(x.getAttribute('aria-controls') || '');
+        if (panel) panel.hidden = !on;
+      });
+      if (focus) t.focus();
+    };
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => select(t));
+      t.addEventListener('mouseenter', () => { if (matchMedia('(hover: hover)').matches) select(t); });
+      t.addEventListener('keydown', (e) => {
+        const k = e.key;
+        let n = -1;
+        if (k === 'ArrowDown' || k === 'ArrowRight') n = (i + 1) % tabs.length;
+        if (k === 'ArrowUp' || k === 'ArrowLeft') n = (i - 1 + tabs.length) % tabs.length;
+        if (k === 'Home') n = 0;
+        if (k === 'End') n = tabs.length - 1;
+        if (n >= 0) { e.preventDefault(); select(tabs[n], true); }
+      });
+    });
+  });
+</script>
+
 <style>
-  /* Hero */
+  /* 1. Hero */
   .hero {
-    --grid: rgba(143, 176, 227, 0.07);
+    --grid: rgba(143, 176, 227, 0.06);
     background:
+      radial-gradient(60rem 30rem at 85% 110%, rgba(255, 77, 94, 0.14), transparent 60%),
       linear-gradient(var(--grid) 1px, transparent 1px) 0 0 / 64px 64px,
       linear-gradient(90deg, var(--grid) 1px, transparent 1px) 0 0 / 64px 64px,
       var(--band);
     color: var(--band-ink);
-    border-bottom: 4px solid var(--band-red);
+    padding-block: var(--s-8) var(--s-7);
   }
-  .hero-grid { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr); gap: var(--s-7); padding-block: var(--s-8) var(--s-8); align-items: end; }
   .hero .label { color: var(--band-ink-2); }
   .hero .kicker::before { background: var(--band-red); }
-  .hero h1 { font-size: min(var(--step-5), 8.4vw); hyphens: manual; font-weight: 800; line-height: 0.98; letter-spacing: -0.03em; margin: var(--s-5) 0 var(--s-6); }
-  .hero-intro { font-size: var(--step-1); color: var(--band-ink-2); max-width: 38rem; }
-  .hero-main { min-width: 0; }
+  .hero h1 { font-size: min(var(--step-5), 8.4vw); font-weight: 800; line-height: 0.96; letter-spacing: -0.035em; margin: var(--s-5) 0 var(--s-7); max-width: 16ch; }
+  .hero-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); gap: var(--s-7); align-items: end; }
+  .hero-copy { min-width: 0; }
+  .hero-intro { font-size: var(--step-1); color: var(--band-ink-2); }
   .hero-cta { display: flex; flex-wrap: wrap; gap: var(--s-3); margin-top: var(--s-6); }
   .hero .btn { background: var(--band-red); border-color: var(--band-red); color: #08111f; }
   .hero .btn:hover { background: transparent; color: var(--band-red); }
   .hero .btn--ghost { background: transparent; color: var(--band-ink); border-color: rgba(238, 241, 246, 0.5); }
   .hero .btn--ghost:hover { background: var(--band-ink); color: var(--band); border-color: var(--band-ink); }
   .hero .tbc { text-decoration-color: #ff6b79; background: rgba(255, 77, 94, 0.12); }
+  .hero-chart { min-width: 0; border: 1px solid var(--band-rule); background: rgba(8, 17, 31, 0.6); padding: var(--s-4) var(--s-4) var(--s-3); }
+  .chart-head { display: flex; justify-content: space-between; gap: var(--s-3); margin-bottom: var(--s-3); }
 
-  .sheet { border: 1px solid var(--band-rule); background: rgba(14, 26, 46, 0.85); }
-  .sheet-head { display: flex; justify-content: space-between; gap: var(--s-3); padding: var(--s-3) var(--s-4); border-bottom: 1px solid var(--band-rule); margin: 0; }
-  .sheet dl { display: grid; grid-template-columns: 1fr 1fr; margin: 0; }
-  .metric { padding: var(--s-4); border-bottom: 1px solid var(--band-rule); display: flex; flex-direction: column-reverse; justify-content: flex-end; gap: var(--s-2); min-width: 0; }
-  .metric:nth-child(odd) { border-right: 1px solid var(--band-rule); }
-  .metric:nth-last-child(-n + 2) { border-bottom: 0; }
-  .metric dt { font-size: var(--step--1); color: var(--band-ink-2); line-height: 1.35; }
-  .metric dd { margin: 0; display: flex; align-items: baseline; flex-wrap: nowrap; font: 800 var(--step-3)/1 var(--font-display); font-stretch: 125%; letter-spacing: -0.03em; color: var(--band-ink); font-variant-numeric: tabular-nums; }
-  .unit { font: 500 var(--step-0)/1 var(--font-mono); color: var(--band-red); margin-left: 0.2em; letter-spacing: 0; }
+  /* 2. Figures */
+  .figures { background: var(--red); color: #fff; }
+  .figs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-block: 0; }
+  .fig { padding: var(--s-5) var(--s-5) var(--s-5) 0; display: flex; flex-direction: column; gap: var(--s-1); min-width: 0; }
+  .fig + .fig { padding-left: var(--s-5); border-left: 1px solid rgba(255, 255, 255, 0.28); }
+  .fig dd { margin: 0; font: 800 var(--step-4)/1 var(--font-display); font-stretch: 125%; letter-spacing: -0.03em; display: flex; align-items: baseline; white-space: nowrap; }
+  .fig dt { font: 500 var(--step--2)/1.4 var(--font-mono); letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.88; }
+  .unit { font: 500 var(--step-0)/1 var(--font-mono); margin-left: 0.2em; opacity: 0.85; letter-spacing: 0; }
+  .figures .tbc { background: rgba(255, 255, 255, 0.12); text-decoration-color: #fff; }
+  :root[data-theme='dark'] .figures, :root:not([data-theme='light']) .figures { color: #fff; }
+  .figures { --red: #b3122e; }
 
-  /* Sectors strip */
-  .sectors { background: var(--surface-2); border-bottom: 1px solid var(--rule); }
-  .sectors-row { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-5); padding-block: var(--s-4); font: 500 var(--step--2)/1.4 var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-2); }
-  .sectors-row span + span::before { content: '/'; color: var(--red); margin-right: var(--s-5); }
+  /* 3. Ticker */
+  .ticker { overflow: hidden; border-bottom: 1px solid var(--rule); background: var(--surface); }
+  .ticker-track { list-style: none; margin: 0; padding: var(--s-4) 0; display: flex; width: max-content; gap: var(--s-6); font: 760 var(--step-1)/1 var(--font-display); font-stretch: 125%; text-transform: uppercase; letter-spacing: -0.01em; color: var(--ink); }
+  .ticker-track li { display: inline-flex; align-items: center; gap: var(--s-6); white-space: nowrap; }
+  .ticker-track li::after { content: ''; width: 10px; height: 10px; background: var(--red); transform: rotate(45deg); }
+  @media (prefers-reduced-motion: no-preference) {
+    .ticker-track { animation: tick 40s linear infinite; }
+    .ticker:hover .ticker-track { animation-play-state: paused; }
+  }
+  @keyframes tick { to { transform: translateX(-33.333%); } }
 
   .block { padding-top: var(--s-9); }
 
-  /* Capabilities: one ruled grid, not floating cards */
-  .caps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 2px solid var(--rule-strong); border-left: 1px solid var(--rule); }
-  .cap { padding: var(--s-5) var(--s-5) var(--s-6); border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--surface); position: relative; }
-  .cap::before { content: ''; position: absolute; left: 0; top: -2px; width: 0; height: 2px; background: var(--red); transition: width 300ms var(--ease); }
-  .cap:hover::before { width: 100%; }
-  .code { display: block; font: 800 4.5rem/0.9 var(--font-display); font-stretch: 125%; color: transparent; -webkit-text-stroke: 1.5px var(--red); margin-bottom: var(--s-5); }
-  .cap h3 { font-size: var(--step-2); margin-bottom: var(--s-3); }
-  .cap-line { color: var(--ink-2); }
-  .cap ul { list-style: none; margin: var(--s-4) 0 0; padding: var(--s-4) 0 0; border-top: 1px solid var(--rule); display: grid; gap: var(--s-2); font-size: var(--step--1); }
-  .cap li { display: grid; grid-template-columns: 0.9rem 1fr; gap: var(--s-2); }
-  .cap li::before { content: ''; width: 0.6rem; height: 2px; background: var(--red); margin-top: 0.7em; }
+  /* 4. Capability split */
+  .cap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); border: 1px solid var(--rule); background: var(--surface); }
+  .cap-list { display: flex; flex-direction: column; border-right: 1px solid var(--rule); }
+  .cap-list button { display: grid; grid-template-columns: 3rem 1fr auto; align-items: center; gap: var(--s-4); padding: var(--s-5); text-align: left; background: none; border: 0; border-bottom: 1px solid var(--rule); cursor: pointer; color: var(--ink-2); }
+  .cap-list button:last-child { border-bottom: 0; }
+  .cap-code { font: 800 2rem/1 var(--font-display); font-stretch: 125%; color: transparent; -webkit-text-stroke: 1.2px currentColor; }
+  .cap-name { font: 760 var(--step-2)/1.1 var(--font-display); font-stretch: 125%; letter-spacing: -0.02em; }
+  .cap-arrow { opacity: 0; transform: translateX(-6px); transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease); color: var(--red); font-size: var(--step-1); }
+  .cap-list button[aria-selected='true'] { color: var(--ink); background: var(--bg); box-shadow: inset 4px 0 0 var(--red); }
+  .cap-list button[aria-selected='true'] .cap-code { color: var(--red); -webkit-text-stroke: 0; }
+  .cap-list button[aria-selected='true'] .cap-arrow { opacity: 1; transform: none; }
+  .cap-list button:hover { color: var(--ink); }
+  .cap-panels { position: relative; overflow: hidden; }
+  .cap-panel { padding: var(--s-7) var(--s-6); position: relative; min-height: 100%; }
+  .ghost { position: absolute; right: -0.05em; bottom: -0.2em; font: 800 18rem/0.8 var(--font-display); font-stretch: 125%; color: transparent; -webkit-text-stroke: 1px var(--rule); pointer-events: none; }
+  .cap-panel h3 { font-size: var(--step-4); margin: var(--s-3) 0 var(--s-4); position: relative; }
+  .cap-line { font-size: var(--step-1); color: var(--ink-2); max-width: 30rem; position: relative; }
+  .cap-panel ul { list-style: none; margin: var(--s-5) 0 0; padding: 0; display: grid; gap: var(--s-3); position: relative; max-width: 30rem; }
+  .cap-panel li { display: grid; grid-template-columns: 1.2rem 1fr; gap: var(--s-2); padding-bottom: var(--s-3); border-bottom: 1px solid var(--rule); }
+  .cap-panel li::before { content: ''; width: 0.75rem; height: 2px; background: var(--red); margin-top: 0.75em; }
+  @media (prefers-reduced-motion: no-preference) {
+    .cap-panel:not([hidden]) { animation: rise 320ms var(--ease); }
+  }
+  @keyframes rise { from { opacity: 0; transform: translateY(8px); } }
 
-  /* Approach band */
-  .approach { background: var(--surface); border-block: 1px solid var(--rule); margin-top: var(--s-9); padding-block: var(--s-9) var(--s-8); }
-  .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--s-5); counter-reset: s; }
-  .steps li { border-top: 2px solid var(--rule-strong); padding-top: var(--s-4); position: relative; }
-  .steps li::before { content: ''; position: absolute; top: -7px; left: 0; width: 12px; height: 12px; background: var(--red); }
-  .step-no { font: 500 var(--step--1)/1 var(--font-mono); color: var(--red); }
-  .steps h3 { font-size: var(--step-2); margin: var(--s-3) 0 var(--s-3); }
-  .steps p { font-size: var(--step--1); color: var(--ink-2); }
+  /* 5. Statement band */
+  .pov { background: #b3122e; color: #fff; margin-top: var(--s-9); overflow: hidden; }
+  .pov-inner { position: relative; padding-block: var(--s-8); }
+  .quote { position: absolute; left: -0.08em; top: -0.18em; font: 800 22rem/1 var(--font-display); color: rgba(255, 255, 255, 0.1); pointer-events: none; }
+  .pov-text { position: relative; font: 800 var(--step-5)/0.98 var(--font-display); font-stretch: 125%; letter-spacing: -0.035em; max-width: 18ch; margin: 0; text-wrap: balance; font-size: min(var(--step-5), 8vw); }
+  .pov-by { position: relative; color: rgba(255, 255, 255, 0.85); margin-top: var(--s-5); }
+  .pov .tbc { background: rgba(255, 255, 255, 0.1); text-decoration-color: #fff; }
 
-  /* Projects */
-  .work { display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--s-5); }
-  .work-item { display: grid; grid-template-rows: auto 1fr; border: 1px solid var(--rule); background: var(--surface); color: inherit; text-decoration: none; }
-  .work-item:hover { border-color: var(--red); }
-  .work-item:hover h3 { color: var(--red); }
-  .shot { aspect-ratio: 16 / 9; border: 0; border-bottom: 1px solid var(--rule); }
-  .work-meta { padding: var(--s-5); display: flex; flex-direction: column; gap: var(--s-3); }
+  /* 6. Stages */
+  .stages { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; }
+  .stages li { min-width: 0; }
+  .chev { position: relative; display: flex; flex-direction: column; gap: var(--s-1); padding: var(--s-4) var(--s-5) var(--s-4) calc(var(--s-5) + 14px); background: var(--surface-2); clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 50%, calc(100% - 18px) 100%, 0 100%, 18px 50%); margin-right: -12px; transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease); }
+  .stages li:first-child .chev { clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 50%, calc(100% - 18px) 100%, 0 100%); padding-left: var(--s-5); }
+  .stages li:last-child .chev { background: var(--red); color: var(--red-ink); }
+  .stages li:hover .chev { background: var(--ink); color: var(--bg); }
+  .stage-no { font: 500 var(--step--2)/1 var(--font-mono); letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.75; }
+  .stage-name { font: 760 var(--step-2)/1 var(--font-display); font-stretch: 125%; letter-spacing: -0.02em; }
+  .stages p { font-size: var(--step--1); color: var(--ink-2); padding: var(--s-4) var(--s-5) 0 var(--s-2); }
+
+  /* 7. Photos */
+  .photos { display: grid; grid-template-columns: 2fr 1fr; gap: var(--s-5); padding-top: var(--s-9); align-items: end; }
+  .photo { margin: 0; min-width: 0; }
+  .ph-frame { width: 100%; }
+  .ph-wide .ph-frame { aspect-ratio: 16 / 9; }
+  .ph-tall .ph-frame { aspect-ratio: 4 / 5; }
+  .photo figcaption { margin-top: var(--s-2); }
+
+  /* 8. Projects */
+  .work { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-6); }
+  .work-item { display: flex; flex-direction: column; gap: var(--s-5); color: inherit; text-decoration: none; min-width: 0; }
+  .w-1 { margin-top: var(--s-8); }
+  .browser { border: 1px solid var(--rule); background: var(--band); box-shadow: 0 24px 48px -28px rgba(5, 11, 22, 0.55); transition: transform 300ms var(--ease); }
+  .work-item:hover .browser { transform: translateY(-6px); }
+  .browser-bar { display: flex; align-items: center; gap: 6px; padding: 10px 12px; border-bottom: 1px solid var(--band-rule); }
+  .browser-bar i { width: 9px; height: 9px; border-radius: 50%; background: #2a3a57; }
+  .browser-bar i:first-child { background: var(--band-red); }
+  .browser-bar span { margin-left: var(--s-3); font: 400 0.7rem/1 var(--font-mono); color: var(--band-ink-2); }
+  .browser-body { aspect-ratio: 16 / 10; padding: var(--s-5); display: grid; align-items: center; }
+  .browser-body.placeholder-img { border: 0; padding: var(--s-4); }
+  .work-meta { display: flex; flex-direction: column; gap: var(--s-3); }
   .work-meta h3 { font-size: var(--step-3); }
-  .go { margin-top: auto; font: 650 var(--step--1)/1 var(--font-text); text-transform: uppercase; letter-spacing: 0.06em; color: var(--red); }
+  .work-item:hover h3 { color: var(--red); }
+  .go { font: 650 var(--step--1)/1 var(--font-text); text-transform: uppercase; letter-spacing: 0.06em; color: var(--red); }
 
-  /* About teaser */
-  .about-teaser { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: var(--s-7); padding-top: var(--s-9); align-items: center; }
-  .photo { aspect-ratio: 4 / 5; max-width: 22rem; width: 100%; }
+  /* 9. About */
+  .about-teaser { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: var(--s-8); padding-top: var(--s-9); align-items: center; }
+  .photo-slot { position: relative; max-width: 24rem; }
+  .portrait { aspect-ratio: 4 / 5; position: relative; z-index: 1; }
+  .corner { position: absolute; inset: var(--s-5) calc(-1 * var(--s-5)) calc(-1 * var(--s-5)) var(--s-5); border: 2px solid var(--red); z-index: 0; }
   .about-teaser h2 { font-size: var(--step-4); margin: var(--s-4) 0 var(--s-5); }
   .about-teaser .lede { max-width: var(--measure); margin-bottom: var(--s-6); }
 
   /* Tablet */
   @media (max-width: 64rem) {
-    .hero-grid { grid-template-columns: 1fr; align-items: start; }
-    .sheet { max-width: 36rem; }
-    .caps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: var(--s-6); }
+    .hero-row { grid-template-columns: 1fr; }
+    .figs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .fig + .fig:nth-child(3) { padding-left: 0; border-left: 0; }
+    .fig:nth-child(n + 3) { border-top: 1px solid rgba(255, 255, 255, 0.28); }
+    .stages { grid-template-columns: 1fr; gap: var(--s-2); }
+    .chev, .stages li:first-child .chev { clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 50%, calc(100% - 18px) 100%, 0 100%); margin-right: 0; padding-left: var(--s-5); flex-direction: row; align-items: baseline; gap: var(--s-4); }
+    .stages p { padding: var(--s-2) 0 var(--s-3) var(--s-5); }
+    .ghost { font-size: 12rem; }
   }
   /* Mobile */
-  @media (max-width: 40rem) {
-    .hero-grid { padding-block: var(--s-7); }
-    .caps { grid-template-columns: 1fr; }
-    .code { font-size: 3.2rem; }
-    .steps { grid-template-columns: 1fr; }
+  @media (max-width: 44rem) {
+    .hero { padding-block: var(--s-7) var(--s-6); }
+    .cap { grid-template-columns: 1fr; }
+    .cap-list { flex-direction: row; overflow-x: auto; border-right: 0; border-bottom: 1px solid var(--rule); }
+    .cap-list button { grid-template-columns: auto; border-bottom: 0; border-right: 1px solid var(--rule); padding: var(--s-4); flex: 1 0 auto; }
+    .cap-name, .cap-arrow { display: none; }
+    .cap-list button[aria-selected='true'] { box-shadow: inset 0 -4px 0 var(--red); }
+    .cap-panel { padding: var(--s-6) var(--s-5); }
+    .cap-panel h3 { font-size: var(--step-3); }
+    .photos { grid-template-columns: 1fr; }
+    .ph-tall { display: none; }
     .work { grid-template-columns: 1fr; }
-    .about-teaser { grid-template-columns: 1fr; gap: var(--s-5); }
-    .photo { max-width: 10rem; }
-    .metric dd { font-size: var(--step-2); }
+    .w-1 { margin-top: 0; }
+    .about-teaser { grid-template-columns: 1fr; gap: var(--s-7); }
+    .photo-slot { max-width: 14rem; }
+    .fig dd { font-size: var(--step-3); }
+    .quote { font-size: 12rem; }
   }
-  @media (prefers-reduced-motion: reduce) { .cap::before { transition: none; } }
+  @media (prefers-reduced-motion: reduce) { .browser, .cap-arrow, .chev { transition: none; } }
 </style>

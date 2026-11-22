@@ -67,6 +67,13 @@ export const home = {
     { step: 'Negotiate', text: '[[Trade, do not concede. Protect margin and the relationship together.]]' },
     { step: 'Deliver', text: '[[Hand over cleanly to delivery and stay close enough to win the next one.]]' },
   ],
+  // Proposed point-of-view line for the statement band. Not approved.
+  pov: '[[Net zero is a commercial problem before it is a technical one.]]',
+  povAttribution: '[[A line Martyn would say in a board meeting. To confirm.]]',
+  photos: [
+    { caption: '[[On site: solar canopy, public sector client]]', ratio: 'wide' },
+    { caption: '[[Board presentation or speaking event]]', ratio: 'tall' },
+  ],
   aboutTeaser:
     '[[A short, direct paragraph on how Martyn works with boards and leadership teams. To be written with Martyn.]]',
 };
