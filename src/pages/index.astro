@@ -249,7 +249,7 @@ const jsonld = {
   .ticker-track li { display: inline-flex; align-items: center; gap: var(--s-6); white-space: nowrap; }
   .ticker-track li::after { content: ''; width: 10px; height: 10px; background: var(--red); transform: rotate(45deg); }
   @media (prefers-reduced-motion: no-preference) {
-    .ticker-track { animation: tick 40s linear infinite; }
+    .ticker-track { animation: tick 65s linear infinite; }
     .ticker:hover .ticker-track { animation-play-state: paused; }
   }
   @keyframes tick { to { transform: translateX(-33.333%); } }
