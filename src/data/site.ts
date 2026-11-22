@@ -20,7 +20,7 @@ export const site = {
   role: 'Commercial & Sales Director',
   employer: 'Ameresco UK',
   description:
-    'Martyn Sheridan is a board-level sales and commercial leader in UK and European energy, currently Commercial & Sales Director at Ameresco UK.',
+    'Martyn Sheridan is Commercial & Sales Director at Ameresco UK. He has worked in sales for 30 years, including 15 in energy, and builds independent digital projects.',
 };
 
 /*
@@ -29,9 +29,9 @@ export const site = {
  * mostly whether Ameresco is comfortable with a figure being public.
  */
 export const home = {
-  headline: 'I turn energy pipelines into signed contracts.',
+  headline: 'Thirty years in sales. Fifteen in energy. Still learning.',
   intro:
-    'Board-level sales and commercial leader in UK and European energy. I have built pipelines into the billions, led teams delivering £200m+ a year, and sat on the boards of listed, private equity-backed and blue-chip businesses. Today I run sales, commercial, procurement, bids and marketing at Ameresco UK.',
+    'I have spent most of my career building sales teams, developing businesses and finding ways to turn opportunities into actual contracts. These days I am Commercial & Sales Director at Ameresco UK. I still enjoy the practical side of the job: getting the right people together, challenging what does not add up and finding a way forward.',
   metrics: [
     { value: '£1.2', unit: 'bn', label: 'Sales closed in a single year (E.ON, 2018)' },
     { value: '£4.2', unit: 'bn', label: 'UK pipeline built in 36 months' },
@@ -52,72 +52,72 @@ export const home = {
     {
       code: 'S',
       title: 'Sales leadership',
-      line: 'Building teams that find, qualify and close complex energy deals.',
+      line: 'I like building teams with a clear sense of what they are trying to win, and why.',
       points: [
-        'Built E.ON’s national energy solutions sales team of 25 from scratch',
-        'Trained in Miller Heiman, SPIN and Challenger, and have rolled them out to teams',
-        'Outbound engines that blend in-house and freelance specialists',
+        'Helped establish E.ON’s Energy Solutions business and built a national team of 25',
+        'Experience of Miller Heiman, SPIN and Challenger, but no substitute for knowing your customer',
+        'Combining good account management with a consistent approach to finding new business',
       ],
     },
     {
       code: 'C',
       title: 'Commercial',
-      line: 'Funded propositions and deal structures that work for both sides.',
+      line: 'A deal has to work for the customer, the business and the people who will deliver it.',
       points: [
-        'Customer-funded and third-party-funded models: PPAs, PDAs, VPPAs, energy as a service',
-        'Secured £100m of funding at eEnergy, working with the CEO',
-        '400MW funded pipeline worth £500m of EBITDA at Ylem Energy',
+        'Experience of customer-funded projects, PPAs, PDAs, VPPAs and energy as a service',
+        'Worked with the CEO and legal team to secure £100m of funding at eEnergy',
+        'Helped move Ylem beyond gas-only PPAs and built a funded pipeline of over 400MW',
       ],
     },
     {
       code: 'P',
       title: 'Procurement & bids',
-      line: 'Bid governance and framework access that turn public sector demand into contracts.',
+      line: 'Knowing when to pursue a bid, how to price it and when to say no matters as much as the tender response.',
       points: [
-        'Four new public sector frameworks secured at Centrica, plus CCS at Shawton',
-        'A “bid squad” model that added eight bids a year and a forecast £50m+ uplift',
-        'Tighter bid governance for complex, multi-technology projects',
+        'Secured four new public sector frameworks at Centrica and expanded framework access at Shawton',
+        'Created a dedicated bid team at Centrica to improve capacity and focus',
+        'Clear ownership, early risk reviews and an honest view of whether an opportunity is worth pursuing',
       ],
     },
     {
       code: 'M',
       title: 'Marketing',
-      line: 'Propositions, brands and campaigns that feed the pipeline.',
+      line: 'I enjoy the thinking behind a proposition as much as the sales conversation itself.',
       points: [
-        'New value propositions, brand guidelines and websites at Shawton and eEnergy',
-        'Digital marketing and PR agencies briefed and held to pipeline outcomes',
-        'Speaker and author at EMEX, edie, FM Inspired and CBI events',
+        'Worked on brands, websites and customer offers at Shawton and eEnergy',
+        'Marketing should help the sales team start useful conversations, not just produce activity',
+        'Spoken and written about energy solutions at industry events',
       ],
     },
   ],
   approach: [
-    { step: 'Qualify', text: 'Real need, real budget, a route to contract. If one is missing, walk away early and spend the time elsewhere.' },
-    { step: 'Shape', text: 'Get in front of the customer before the tender lands, so the brief reflects what actually works.' },
-    { step: 'Propose', text: 'A clear commercial offer: what it costs, what it saves, how it is funded and who carries which risk.' },
-    { step: 'Negotiate', text: 'Trade, do not concede. Protect the margin and the relationship together.' },
-    { step: 'Deliver', text: 'Hand over cleanly to delivery and stay close enough to win the next one.' },
+    { step: 'Qualify', text: 'Is there a real customer need, funding and a sensible route to a decision? If not, I would rather know early.' },
+    { step: 'Shape', text: 'Listen properly, understand the problem and involve the right people before deciding what to offer.' },
+    { step: 'Propose', text: 'Explain the solution in plain English, including cost, funding, benefits and who carries the risk.' },
+    { step: 'Negotiate', text: 'Be clear about what matters, keep the discussion constructive and avoid giving away value for nothing.' },
+    { step: 'Deliver', text: 'A signed contract is only the start. The team delivering it needs to know exactly what has been agreed.' },
   ],
-  pov: '[[Net zero is a commercial problem before it is a technical one.]]',
-  povAttribution: '[[Draft line. Replace with something you actually say in a board meeting.]]',
+  pov: '[[The best ideas usually come from a straightforward question: what problem are we actually trying to solve?]]',
+  povAttribution: '[[Draft personal perspective, for Martyn to approve]]',
   photos: [
     { caption: '[[On site: solar, battery or CHP project]]', ratio: 'wide' },
     { caption: '[[Speaking at an industry event]]', ratio: 'tall' },
   ],
   aboutTeaser:
-    'Former rugby captain, film graduate, energy salesman. I lead from the front, say what I think and stay calm when it is time to close. Outside work I coach rugby and take barbecue very seriously.',
+    'I started out selling advertising, studied film at university and spent a good few years playing rugby. These days it is energy, commercial leadership and an increasing curiosity about what I can build with AI. I still enjoy a decent barbecue.',
 };
 
 export const about = {
-  headline: 'Nearly thirty years of selling. The last fifteen in energy.',
+  headline: 'A bit more about me.',
   paragraphs: [
-    'I started in 1997 selling advertising for the Southern Daily Echo. Publishing taught me the basics that still matter: pick up the phone, earn the meeting, ask for the order. Regus took me into the boardrooms of the UK’s top 2,000 companies, and in 2011 I joined E.ON and found the market I have stayed in ever since.',
-    'At E.ON I was one of two people who set up the Energy Solutions business, building a national team that moved from selling supply contracts to selling value: solar, CHP, batteries and efficiency. In 2018 that team closed £1.2bn, 138% of target. Since then I have sat on the boards of growth businesses backed by public markets and private equity (eEnergy, Ylem Energy, Shawton Energy), led UK and Ireland sales at Centrica Business Solutions, and served as a non-executive director at the energy AI business Grid Edge.',
-    'I am not a developer, but I use AI every day: to analyse pipeline, stress-test pricing, draft board papers and sharpen messaging. I also use it to build simple tools myself, which is what you will find under Projects. They are my own work, built in my own time.',
+    'I started my sales career in 1997, selling advertising for the Southern Daily Echo. It is a long way from the energy projects I work on now, but the basics have not changed much. You need to understand your customer, know what you are selling and be prepared to ask for the business. After several years in media and corporate sales, I joined E.ON in 2011 and moved into energy.',
+    'I helped set up E.ON’s Energy Solutions business and went on to lead sales and commercial teams at eEnergy, Ylem and Shawton, as well as Centrica Business Solutions. I have worked in large corporates, listed businesses and private equity-backed companies. Each is different, but I keep coming back to the same things: good people, a clear proposition, sensible processes and knowing which opportunities are worth the effort.',
+    'I am interested in what technology can do for people who are not developers. I use AI in my day-to-day work for analysis, planning and testing ideas, and I have started building my own websites and tools. Some are useful already; others are experiments. The projects on this site are independent of my role at Ameresco.',
   ],
   interests: [
-    'Rugby. Captained Southampton RFC, played for Berkshire U18s, had an England Universities trial. Now I coach.',
-    'Film. I have a degree in it (BA Hons, Solent University) and still watch and read about it far too much.',
-    'Cooking, and barbecue in particular.',
+    'Rugby has been a big part of my life. I played and captained teams, including Southampton RFC, and have been involved in coaching.',
+    'I studied Film at Solent University. I still enjoy films and the stories behind them.',
+    'I enjoy cooking, particularly a proper barbecue.',
   ],
 };
 
@@ -135,9 +135,9 @@ export const experience: ExperienceEntry[] = [
     role: 'Commercial & Sales Director',
     org: 'Ameresco UK',
     summary:
-      'Reporting to the UK Managing Director, responsible for sales, commercial, procurement, bid management and marketing across public sector, I&C, grid scale and emerging markets.',
+      'I lead sales, commercial, procurement, bid management and marketing across the UK business. My focus is on building the right team, improving how we choose and manage opportunities, and helping the business grow sensibly.',
     wins: [
-      'Reshaped the sales and commercial structure, with clearer pipeline, CRM and bid governance',
+      'Worked on the sales and commercial structure, with clearer pipeline reporting and bid reviews',
       '[[Built the grid scale team, now pursuing 1GW of ground-mount battery and solar projects]]',
       '[[300MW battery storage project closed and in pre-construction]]',
     ],
@@ -147,10 +147,10 @@ export const experience: ExperienceEntry[] = [
     role: 'Non-Executive Board Member',
     org: 'Grid Edge',
     summary:
-      'Board role at an energy AI business backed by Centrica, advising on growth strategy, pricing and how the platform fits funded energy projects.',
+      'I served as a non-executive board member at an energy technology business backed by Centrica, helping the team think through growth, pricing and how its tools would work for customers.',
     wins: [
-      'Aligned the platform with customer propositions for the NHS, manufacturing and multi-site estates',
-      'Commercial input on pricing, upsell and cross-sell across solar, CHP, battery and microgrid projects',
+      'Helped assess how the platform could support customers with complex, multi-site energy needs',
+      'Advised on pricing, partnerships and the fit with wider energy solutions',
     ],
   },
   {
@@ -158,11 +158,11 @@ export const experience: ExperienceEntry[] = [
     role: 'Sales Director, UK & Ireland',
     org: 'Centrica Business Solutions',
     summary:
-      'Led sales for large, integrated energy solutions (CHP, solar, heat pumps, batteries and microgrids), on both customer-funded and Centrica-funded models.',
+      'Led UK and Ireland sales for projects combining CHP, solar, heat pumps, batteries and microgrids, with a mix of customer and third-party funding.',
     wins: [
-      'Beat 2025 financial objectives by Q3, delivering £200m+ revenue ahead of plan',
-      'Built an £800m+ pipeline with £200m+ weighted',
-      'Relaunched public sector: four new frameworks and a bid squad worth a forecast £50m+',
+      'Exceeded 2025 financial objectives by Q3, with more than £200m of reported revenue',
+      'Built a sales pipeline exceeding £800m, including more than £200m of weighted opportunities',
+      'Refocused public sector sales, secured four frameworks and set up a dedicated bid team',
     ],
   },
   {
@@ -170,11 +170,11 @@ export const experience: ExperienceEntry[] = [
     role: 'Sales & Marketing Director, board member',
     org: 'Shawton Energy',
     summary:
-      'Board role reporting to the CEO and Lazard Asset Management, with P&L responsibility for funded solar and battery projects for large energy users.',
+      'At Shawton I was responsible for sales and marketing of funded solar and battery projects, as part of the board team.',
     wins: [
-      'Tripled the pipeline to more than 200MWp',
-      '12MWp closed in 2024',
-      'New proposition, brand and website, plus a virtual PPA developed with the CEO',
+      'Tripled the solar pipeline to more than 200MWp',
+      'Closed 12MWp of projects in 2024',
+      'Worked with the CEO on a virtual PPA offer, and led a new proposition, brand and website',
     ],
   },
   {
@@ -182,11 +182,11 @@ export const experience: ExperienceEntry[] = [
     role: 'Group Sales & Marketing Director, board member',
     org: 'Ylem Energy',
     summary:
-      'Led the move from gas-only PPAs to a renewables-led portfolio: solar, hydrogen-ready CHP, batteries, efficiency and O&M.',
+      'Worked with the team to take Ylem beyond gas-only PPAs into a broader mix of renewable and energy efficiency solutions.',
     wins: [
-      'Built a 400MW+ funded pipeline worth £500m of EBITDA across 150 projects',
-      'Integrated a sister efficiency business, lifting its EBITDA 145% in year one',
-      '100% retention of the senior sales team',
+      'Built a funded pipeline of more than 400MW across around 150 projects',
+      'Integrated an energy efficiency business, with EBITDA increasing 145% in its first year',
+      'Recruited and retained the senior sales team',
     ],
   },
   {
@@ -194,10 +194,10 @@ export const experience: ExperienceEntry[] = [
     role: 'Group Commercial & Sales Director, board member',
     org: 'eEnergy plc',
     summary:
-      'Board role in a newly listed, acquisitive business. Built the eEnergy brand and its Light and Heat as a Service model with the CEO.',
+      'Helped build the eEnergy brand and its energy-as-a-service offer in a newly listed business.',
     wins: [
-      '132% of financial targets through COVID-19',
-      'Secured £100m of funding with the CEO and legal team',
+      'Delivered 132% of financial target during the COVID-19 period',
+      'Worked with the CEO and legal team to secure £100m of funding',
       'Supported two acquisitions',
     ],
   },
@@ -206,11 +206,11 @@ export const experience: ExperienceEntry[] = [
     role: 'Head of National Sales & Energy Solutions; earlier Key Account Manager',
     org: 'E.ON',
     summary:
-      'One of two people who set up E.ON’s Energy Solutions business. Led a national team of 25 and an international key account team covering Europe’s largest energy users.',
+      'Helped establish E.ON’s Energy Solutions business and led a national team of 25, alongside work with major customers across Europe.',
     wins: [
-      '£4.2bn UK pipeline built in 36 months',
-      '£1.2bn sales in 2018, 138% of target',
-      '£27m (2018) and £38m (2019) from strategic customers, including DS Smith across four countries',
+      'Built a UK pipeline reported at £4.2bn over 36 months',
+      'Reported £1.2bn of sales in 2018, 138% of target',
+      'Worked with international customers, including DS Smith across four countries',
     ],
   },
   {
@@ -218,7 +218,7 @@ export const experience: ExperienceEntry[] = [
     role: 'Sales leadership, before energy',
     org: 'Regus, Thomson Local, AA Publishing, Wilson Publications, Southern Daily Echo',
     summary:
-      'Fourteen years in media and workplace sales, ending as Director of Corporate Accounts at Regus, selling to the UK’s top 2,000 companies.',
+      'Started in advertising and publishing before moving into corporate accounts at Regus, where I led a team working with major UK businesses.',
     wins: [],
   },
 ];
