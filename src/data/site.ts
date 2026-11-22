@@ -31,7 +31,7 @@ export const site = {
 export const home = {
   headline: 'Thirty years in sales. Fifteen in energy. Still learning.',
   intro:
-    'I’ve spent 30 years in sales, including the last 15 in energy. I’ve worked in big businesses and smaller ones, building teams, developing opportunities and dealing with the problems that come with growing a business. These days I’m Commercial & Sales Director at Ameresco UK. I enjoy working with people, whether that's customers or colleagues, and I’m happiest when we get stuck into a challenge and find a sensible way forward.',
+    'I’ve spent 30 years in sales, including the last 15 in energy. I’ve worked in big businesses and smaller ones, building teams, developing opportunities and dealing with the problems that come with growing a business. These days I’m Commercial & Sales Director at Ameresco UK. I enjoy working with people, whether that’s customers or colleagues, and I’m happiest when we get stuck into a challenge and find a sensible way forward.',
   metrics: [
     { value: '£1.2', unit: 'bn', label: 'Sales closed in a single year (E.ON, 2018)' },
     { value: '£4.2', unit: 'bn', label: 'UK pipeline built in 36 months' },
@@ -72,7 +72,7 @@ export const home = {
     {
       code: 'P',
       title: 'Procurement & bids',
-      line: 'I'll roll my sleeves up on a bid when it matters, but we also need to be honest about what we can win and deliver.',
+      line: 'I’ll roll my sleeves up on a bid when it matters, but we also need to be honest about what we can win and deliver.',
       points: [
         'Secured four new public sector frameworks at Centrica and expanded framework access at Shawton',
         'Created a dedicated bid team at Centrica to improve capacity and focus',
@@ -111,11 +111,11 @@ export const about = {
   headline: 'A bit more about me.',
   paragraphs: [
     'I started my sales career in 1997, selling advertising for the Southern Daily Echo. It was a good place to learn how to talk to people, listen to what they needed and ask for the business. After working in publishing and corporate sales, I joined E.ON in 2011. Energy was a new world for me at the time, but I enjoyed it and have stayed in the sector ever since.',
-    'I helped establish E.ON's Energy Solutions business and later took on sales and commercial leadership roles at eEnergy, Ylem, Shawton and Centrica. I’ve worked in large corporates, listed businesses and smaller companies with ambitious plans. The circumstances change, but the challenge is usually familiar: understand what needs fixing, get the right people together and find a practical way to move forward.',
+    'I helped establish E.ON’s Energy Solutions business and later took on sales and commercial leadership roles at eEnergy, Ylem, Shawton and Centrica. I’ve worked in large corporates, listed businesses and smaller companies with ambitious plans. The circumstances change, but the challenge is usually familiar: understand what needs fixing, get the right people together and find a practical way to move forward.',
     'I’m a people person and I enjoy being close to both customers and the teams doing the work. I don’t believe in managing everything from a distance. I’m happy to set the direction, but I’m equally happy rolling my sleeves up when a problem needs sorting. I want us to deliver what the customer actually needs, make sure it works for the business and enjoy ourselves along the way.',
   ],
   interests: [
-    'I’ve also become interested in building digital tools with AI. I’m not a developer, and that's part of the appeal: seeing what you can make with a good idea and a bit of persistence. These projects are my own, separate from Ameresco.',
+    'I’ve also become interested in building digital tools with AI. I’m not a developer, and that’s part of the appeal: seeing what you can make with a good idea and a bit of persistence. These projects are my own, separate from Ameresco.',
     'Rugby has been a big part of my life. I played and captained teams, including Southampton RFC, and have been involved in coaching.',
     'I studied Film at Solent University. I still enjoy films and the stories behind them.',
     'I enjoy cooking, particularly a proper barbecue.',
