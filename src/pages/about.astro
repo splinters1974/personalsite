@@ -2,7 +2,6 @@
 import Base from '../layouts/Base.astro';
 import T from '../components/T.astro';
 import { about } from '../data/site';
-import { PROTO } from '../data/text';
 ---
 <Base title="About" description="About Martyn Sheridan, from advertising sales to commercial leadership in energy, with an interest in rugby, film and building digital tools.">
   <article class="wrap about">
@@ -10,8 +9,8 @@ import { PROTO } from '../data/text';
       <p class="label kicker">About</p>
       <h1>{about.headline}</h1>
     </header>
-    {PROTO && <figure class="portrait">
-      <div class="placeholder-img" role="img" aria-label="Photograph of Martyn Sheridan, to be supplied">Photograph to supply</div>
+    <figure class="portrait">
+      <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_3JHfNLjekklv2IsLBvSXs5fkIg3/ee9f88a6-a650-4115-a215-4155c2afb7d1.jpg" alt="Martyn Sheridan, informal portrait" loading="eager" width="1086" height="1448" />
       <figcaption class="label">Hampshire, UK</figcaption>
     </figure>}
     <div class="body">
@@ -33,7 +32,7 @@ import { PROTO } from '../data/text';
   .head .label { margin-bottom: var(--s-4); }
   h1 { font-size: var(--step-4); letter-spacing: -0.02em; }
   .portrait { grid-column: 1 / 4; margin: 0; position: sticky; top: var(--s-5); align-self: start; }
-  .portrait .placeholder-img { aspect-ratio: 4 / 5; }
+  .portrait img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
   .portrait figcaption { margin-top: var(--s-2); }
   .body { grid-column: 5 / 12; max-width: var(--measure); }
   .sub { margin-top: var(--s-7); margin-bottom: var(--s-3); }
