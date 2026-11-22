@@ -261,7 +261,7 @@ const jsonld = {
   .cap-list { display: flex; flex-direction: column; border-right: 1px solid var(--rule); }
   .cap-list button { display: grid; grid-template-columns: 3rem 1fr auto; align-items: center; gap: var(--s-4); padding: var(--s-5); text-align: left; background: none; border: 0; border-bottom: 1px solid var(--rule); cursor: pointer; color: var(--ink-2); }
   .cap-list button:last-child { border-bottom: 0; }
-  .cap-code { font: 800 2rem/1 var(--font-display); font-stretch: 125%; color: transparent; -webkit-text-stroke: 1.2px currentColor; }
+  .cap-code { font: 800 2rem/1 var(--font-display); font-stretch: 125%; color: var(--ink-2); -webkit-text-stroke: 0; }
   .cap-name { font: 760 var(--step-2)/1.1 var(--font-display); font-stretch: 125%; letter-spacing: -0.02em; }
   .cap-arrow { opacity: 0; transform: translateX(-6px); transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease); color: var(--red); font-size: var(--step-1); }
   .cap-list button[aria-selected='true'] { color: var(--ink); background: var(--bg); box-shadow: inset 4px 0 0 var(--red); }
