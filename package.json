@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node scripts/prune-mock-pages.mjs dist",
     "preview": "astro preview",
     "check": "astro check",
-    "preview:static": "astro build && node scripts/relativise.mjs dist dist-preview"
+    "preview:static": "PUBLIC_PROTOTYPE=true astro build && node scripts/relativise.mjs dist dist-preview",
+    "build:proto": "PUBLIC_PROTOTYPE=true astro build"
   },
   "dependencies": {
     "@fontsource-variable/archivo": "^5.3.0",

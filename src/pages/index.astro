@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import T from '../components/T.astro';
 import LoadProfile from '../components/LoadProfile.astro';
 import { site, home, featuredProjects } from '../data/site';
-import { plain } from '../data/text';
+import { plain, PROTO, live } from '../data/text';
 
 const jsonld = {
   '@context': 'https://schema.org',
@@ -93,13 +93,13 @@ const jsonld = {
   </section>
 
   <!-- 5. Statement band -->
-  <section class="pov" aria-label="Point of view">
+  {live(home.pov) && <section class="pov" aria-label="Point of view">
     <div class="wrap pov-inner">
       <span class="quote" aria-hidden="true">“</span>
       <p class="pov-text"><T text={home.pov} /></p>
       <p class="pov-by label"><T text={home.povAttribution} /></p>
     </div>
-  </section>
+  </section>}
 
   <!-- 6. Approach as deal stages -->
   <section class="wrap block" aria-labelledby="ap-h">
@@ -121,7 +121,7 @@ const jsonld = {
   </section>
 
   <!-- 7. Photo strip -->
-  <section class="photos wrap" aria-label="Photography">
+  {PROTO && <section class="photos wrap" aria-label="Photography">
     {home.photos.map((ph, i) => (
       <figure class={`photo ph-${ph.ratio}`}>
         <div class="ph-frame placeholder-img" role="img" aria-label="Photograph to be supplied">
@@ -130,10 +130,10 @@ const jsonld = {
         <figcaption class="label"><T text={ph.caption} /></figcaption>
       </figure>
     ))}
-  </section>
+  </section>}
 
   <!-- 8. Projects -->
-  <section class="wrap block" aria-labelledby="work-h">
+  {featuredProjects.length > 0 && <section class="wrap block" aria-labelledby="work-h">
     <div class="sec-head">
       <div>
         <p class="label kicker">Independent projects</p>
@@ -157,14 +157,14 @@ const jsonld = {
         </a>
       ))}
     </div>
-  </section>
+  </section>}
 
   <!-- 9. About -->
-  <section class="wrap about-teaser" aria-labelledby="about-h">
-    <div class="photo-slot">
+  <section class={`wrap about-teaser ${PROTO ? '' : 'no-photo'}`} aria-labelledby="about-h">
+    {PROTO && <div class="photo-slot">
       <div class="placeholder-img portrait" role="img" aria-label="Photograph of Martyn Sheridan, to be supplied">Portrait to supply</div>
       <span class="corner" aria-hidden="true"></span>
-    </div>
+    </div>}
     <div>
       <p class="label kicker">About</p>
       <h2 id="about-h">Straight talking. Commercially minded. Builds things.</h2>
@@ -327,6 +327,7 @@ const jsonld = {
 
   /* 9. About */
   .about-teaser { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: var(--s-8); padding-top: var(--s-9); align-items: center; }
+  .about-teaser.no-photo { grid-template-columns: minmax(0, 1fr); max-width: 52rem; margin-left: max(var(--gutter), calc((100% - var(--page-max)) / 2)); }
   .photo-slot { position: relative; max-width: 24rem; }
   .portrait { aspect-ratio: 4 / 5; position: relative; z-index: 1; }
   .corner { position: absolute; inset: var(--s-5) calc(-1 * var(--s-5)) calc(-1 * var(--s-5)) var(--s-5); border: 2px solid var(--red); z-index: 0; }

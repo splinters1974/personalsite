@@ -17,3 +17,13 @@ export function plain(text: string): string {
 }
 
 export const isTbc = (text: string) => /\[\[.+?\]\]/.test(text);
+
+/**
+ * Prototype mode shows review aids (prototype bar, placeholder marks, photo
+ * slots, mock pages). Live builds hide anything still marked [[to confirm]].
+ * Set PUBLIC_PROTOTYPE=true to build the review prototype.
+ */
+export const PROTO = import.meta.env.PUBLIC_PROTOTYPE === 'true';
+
+/** True if this text can be shown: always in prototype, only when confirmed live. */
+export const live = (text: string) => PROTO || !isTbc(text);

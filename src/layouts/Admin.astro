@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import ProtoBar from '../components/ProtoBar.astro';
+import { PROTO } from '../data/text';
 import ThemeToggle from '../components/ThemeToggle.astro';
 interface Props { title: string; section: string }
 const { title, section } = Astro.props;
@@ -26,7 +27,7 @@ const nav = [
   </head>
   <body class="admin">
     <a class="skip" href="#main">Skip to content</a>
-    <ProtoBar />
+    {PROTO && <ProtoBar />}
     <div class="shell">
       <aside class="side">
         <a class="brand" href="/">Martyn Sheridan</a>

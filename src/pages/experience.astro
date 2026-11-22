@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import T from '../components/T.astro';
 import { experience, qualifications, site } from '../data/site';
+import { live } from '../data/text';
 ---
 <Base title="Track record" description="Martyn Sheridan’s track record: Ameresco UK, Centrica, Shawton Energy, Ylem Energy, eEnergy and E.ON, with board and non-executive roles.">
   <div class="wrap exp">
@@ -19,7 +20,7 @@ import { experience, qualifications, site } from '../data/site';
             <h2><T text={e.role} /></h2>
             <T text={e.org} as="p" class="org" />
             <T text={e.summary} as="p" class="muted summary" />
-            {e.wins.length > 0 && <ul class="wins">{e.wins.map((w) => <li><T text={w} /></li>)}</ul>}
+            {e.wins.filter(live).length > 0 && <ul class="wins">{e.wins.filter(live).map((w) => <li><T text={w} /></li>)}</ul>}
           </div>
         </li>
       ))}

@@ -9,6 +9,8 @@
  * PLACEHOLDER and must be confirmed by Martyn before publication.
  */
 
+import { live } from './text';
+
 export const site = {
   name: 'Martyn Sheridan',
   url: 'https://martynsheridan.com',
@@ -301,5 +303,6 @@ export const projects: Project[] = [
   },
 ];
 
-export const publicProjects = projects.filter((p) => p.visibility === 'public');
+// Live builds only list projects whose details have been confirmed.
+export const publicProjects = projects.filter((p) => p.visibility === 'public' && live(p.summary));
 export const featuredProjects = publicProjects.filter((p) => p.featured);

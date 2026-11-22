@@ -11,7 +11,10 @@ import { publicProjects } from '../../data/site';
       <p class="lede">I am not a developer. I use AI to build practical tools for the problems I see in energy sales: sizing solar, reading half-hourly data, making the case to a board. All built in my own time. Some are live, some are in testing, and private projects are shared by invitation only.</p>
     </header>
 
-    <table class="index">
+    {publicProjects.length === 0 && (
+      <p class="soon">The first projects are going up shortly. In the meantime, <a href="/contact/">get in touch</a> if you would like an early look.</p>
+    )}
+    {publicProjects.length > 0 && <table class="index">
       <caption class="visually-hidden">Public projects</caption>
       <thead>
         <tr><th scope="col">No.</th><th scope="col">Project</th><th scope="col">Type</th><th scope="col">Status</th><th scope="col">Updated</th></tr>
@@ -30,10 +33,11 @@ import { publicProjects } from '../../data/site';
           </tr>
         ))}
       </tbody>
-    </table>
+    </table>}
   </div>
 </Base>
 <style>
+  .soon { font-size: var(--step-1); border-top: 2px solid var(--rule-strong); padding-top: var(--s-5); max-width: 40rem; }
   .head { padding-top: var(--s-8); max-width: 48rem; margin-bottom: var(--s-7); }
   .head .label { margin-bottom: var(--s-4); }
   h1 { font-size: var(--step-4); letter-spacing: -0.02em; margin-bottom: var(--s-5); }
