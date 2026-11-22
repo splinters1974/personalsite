@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import T from '../components/T.astro';
 import { site, home, featuredProjects } from '../data/site';
-import { plain, live } from '../data/text';
+import { plain } from '../data/text';
 
 const jsonld = {
   '@context': 'https://schema.org',
@@ -86,15 +86,6 @@ const jsonld = {
       </div>
     </div>
   </section>
-
-  <!-- 5. Statement band -->
-  {live(home.pov) && <section class="pov" aria-label="Point of view">
-    <div class="wrap pov-inner">
-      <span class="quote" aria-hidden="true">“</span>
-      <p class="pov-text"><T text={home.pov} /></p>
-      <p class="pov-by label"><T text={home.povAttribution} /></p>
-    </div>
-  </section>}
 
   <!-- 6. Approach as deal stages -->
   <section class="wrap block" aria-labelledby="ap-h">
