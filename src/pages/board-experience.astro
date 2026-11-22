@@ -9,8 +9,50 @@ import { site } from '../data/site';
       <p class="label kicker">Board experience</p>
       <h1>Board & Non-Executive Experience</h1>
       <p class="lede">I’ve worked at board level in listed and privately backed energy businesses, as well as serving as a non-executive board member at Grid Edge. They were different roles, but they shared the same challenge: understanding what the business needs, getting people behind a plan and delivering against it.</p>
-      <p>I'm comfortable discussing strategy, budgets and growth plans, but I also like to understand what's happening in the business day to day. I think the best decisions come from knowing both.</p>
+      <p>I’m comfortable discussing strategy, budgets and growth plans, but I also like to understand what’s happening in the business day to day. I think the best decisions come from knowing both.</p>
     </header>
+
+    <section class="ned-value" aria-labelledby="ned-value-title">
+      <div class="value-intro">
+        <p class="label kicker">What I could bring to a board</p>
+        <h2 id="ned-value-title">Commercial experience, an outside view and a willingness to challenge.</h2>
+        <p>I can see myself taking on more non-executive roles in the later part of my career. I enjoy the balance of helping a leadership team think through its decisions without being the person running the business day to day.</p>
+        <p>My experience has mainly been in growth, sales and commercial change. That's where I think I could add the most value, particularly to businesses that want to grow but need a clearer plan for how to get there.</p>
+      </div>
+      <div class="value-grid">
+        <div class="value-item">
+          <span class="value-number label">01</span>
+          <h3>Growth and commercial strategy</h3>
+          <p>I've built sales teams, developed new markets and helped businesses change their offer. I can challenge whether a growth plan is realistic, properly funded and backed by a route to winning customers.</p>
+        </div>
+        <div class="value-item">
+          <span class="value-number label">02</span>
+          <h3>Customer and market understanding</h3>
+          <p>I bring a customer's perspective into business decisions. What problem are we solving? Will someone pay for it? Can the business deliver what it promises?</p>
+        </div>
+        <div class="value-item">
+          <span class="value-number label">03</span>
+          <h3>Leadership and people</h3>
+          <p>I enjoy working with people at every level. I've recruited and led teams through change, and can offer management teams a sounding board on structure, capability and how to bring people along with a plan.</p>
+        </div>
+        <div class="value-item">
+          <span class="value-number label">04</span>
+          <h3>Commercial judgement and risk</h3>
+          <p>I've worked with funded projects, complex contracts and board-level targets. I tend to ask whether the numbers stack up, where the risks sit and what happens after the contract is signed.</p>
+        </div>
+        <div class="value-item">
+          <span class="value-number label">05</span>
+          <h3>Change and business development</h3>
+          <p>From new propositions to business integration and process changes, I've seen what can go wrong when a good strategy isn't supported by the way a business actually works.</p>
+        </div>
+        <div class="value-item">
+          <span class="value-number label">06</span>
+          <h3>Constructive challenge</h3>
+          <p>I'm comfortable asking difficult questions, but I'm not interested in criticism for its own sake. I want to help the people running the business find practical answers and make better decisions.</p>
+        </div>
+      </div>
+      <p class="value-boundary">I see a non-executive role as providing independent judgement, support and challenge, not stepping into management's job. My strongest contribution is commercial and strategic; I wouldn't claim to be a specialist in audit, legal or technical governance.</p>
+    </section>
 
     <section class="group" aria-labelledby="exec-title">
       <div class="group-heading">
@@ -76,6 +118,17 @@ import { site } from '../data/site';
   .intro h1 { font-size: var(--step-5); line-height: 1.03; letter-spacing: -0.03em; max-width: 18ch; margin-bottom: var(--s-6); }
   .intro .lede { font-size: var(--step-1); max-width: 49rem; }
   .intro p + p { margin-top: var(--s-4); max-width: 45rem; }
+  .ned-value { border-top: 2px solid var(--ink); padding-top: var(--s-7); margin-bottom: var(--s-9); }
+  .value-intro { max-width: 52rem; margin-bottom: var(--s-7); }
+  .value-intro .label { margin-bottom: var(--s-4); }
+  .value-intro h2 { font-size: var(--step-4); line-height: 1.05; letter-spacing: -0.025em; margin-bottom: var(--s-5); max-width: 20ch; }
+  .value-intro p { max-width: 47rem; margin-top: var(--s-3); color: var(--ink-2); }
+  .value-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--rule); border-left: 1px solid var(--rule); }
+  .value-item { padding: var(--s-5); border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .value-number { color: var(--red); }
+  .value-item h3 { font-size: var(--step-1); line-height: 1.18; margin: var(--s-3) 0; }
+  .value-item p { color: var(--ink-2); font-size: var(--step--1); }
+  .value-boundary { margin-top: var(--s-5); padding-left: var(--s-4); border-left: 3px solid var(--red); max-width: 55rem; font-size: var(--step--1); color: var(--ink-2); }
   .group { border-top: 2px solid var(--ink); padding-top: var(--s-6); margin-bottom: var(--s-9); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: var(--s-7); }
   .group-heading .label { color: var(--red); margin-bottom: var(--s-4); }
   .group-heading h2 { font-size: var(--step-3); line-height: 1.08; margin-bottom: var(--s-4); }
@@ -95,6 +148,8 @@ import { site } from '../data/site';
   .footnote { max-width: 52rem; margin: var(--s-7) 0; color: var(--ink-3); font-size: var(--step--1); }
   @media (max-width: 52rem) {
     .group { grid-template-columns: 1fr; gap: var(--s-5); }
+    .value-grid { grid-template-columns: 1fr; }
+    .value-intro h2 { font-size: var(--step-3); }
     .intro h1 { font-size: var(--step-4); }
     .perspective { padding: var(--s-5); }
   }
