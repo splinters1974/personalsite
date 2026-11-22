@@ -1,0 +1,101 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+---
+
+<Base title="Board & Non-Executive Experience" description="Martyn Sheridan's executive board experience at eEnergy, Ylem Energy and Shawton Energy, and non-executive board role at Grid Edge.">
+  <article class="wrap board">
+    <header class="intro">
+      <p class="label kicker">Board experience</p>
+      <h1>Board & Non-Executive Experience</h1>
+      <p class="lede">I’ve worked at board level in listed and privately backed energy businesses, as well as serving as a non-executive board member at Grid Edge. They were different roles, but they shared the same challenge: understanding what the business needs, getting people behind a plan and delivering against it.</p>
+      <p>I'm comfortable discussing strategy, budgets and growth plans, but I also like to understand what's happening in the business day to day. I think the best decisions come from knowing both.</p>
+    </header>
+
+    <section class="group" aria-labelledby="exec-title">
+      <div class="group-heading">
+        <p class="label">01 / Executive</p>
+        <h2 id="exec-title">Executive board roles</h2>
+        <p>These were hands-on leadership roles. As well as contributing to board decisions, I was responsible for sales, commercial performance, people and business development.</p>
+      </div>
+      <div class="roles">
+        <section class="role">
+          <div class="role-meta"><span class="label">2019–2021</span><span class="tag">Listed business</span></div>
+          <h3>eEnergy plc</h3>
+          <p class="position">Group Commercial & Sales Director · Board member</p>
+          <p>Joined as the business was building its position in energy-as-a-service. Worked with the CEO on the eEnergy brand, the commercial offer and growth plans, alongside the day-to-day responsibility for sales.</p>
+          <p class="outcome">Worked with the CEO and legal team to secure £100m of funding, delivered 132% of financial target during the COVID-19 period and supported two acquisitions.</p>
+        </section>
+        <section class="role">
+          <div class="role-meta"><span class="label">2021–2023</span><span class="tag">Energy solutions</span></div>
+          <h3>Ylem Energy</h3>
+          <p class="position">Group Sales & Marketing Director · Board director</p>
+          <p>Helped change the direction of the business from a predominantly gas-based offer to a wider range of renewable energy and efficiency solutions. Worked across commercial strategy, team development and integration.</p>
+          <p class="outcome">Built a funded pipeline of more than 400MW across around 150 projects and integrated an energy efficiency business whose EBITDA increased by 145% in its first year.</p>
+        </section>
+        <section class="role">
+          <div class="role-meta"><span class="label">2023–2025</span><span class="tag">Funded solar</span></div>
+          <h3>Shawton Energy</h3>
+          <p class="position">Sales & Marketing Director · Board member</p>
+          <p>Responsible for the commercial approach to funded solar and battery projects, working with the CEO and shareholders on growth, the customer offer and business development.</p>
+          <p class="outcome">Tripled the solar pipeline to more than 200MWp, closed 12MWp of projects in 2024 and developed a virtual PPA proposition with the CEO.</p>
+        </section>
+      </div>
+    </section>
+
+    <section class="group nex" aria-labelledby="nex-title">
+      <div class="group-heading">
+        <p class="label">02 / Non-executive</p>
+        <h2 id="nex-title">Non-Executive Board Member</h2>
+        <p>This role was about contributing a commercial and customer perspective rather than running the day-to-day sales operation.</p>
+      </div>
+      <div class="roles">
+        <section class="role">
+          <div class="role-meta"><span class="label">June 2025 – January 2026</span><span class="tag">Energy technology</span></div>
+          <h3>Grid Edge</h3>
+          <p class="position">Non-Executive Board Member</p>
+          <p>Served on the board of an energy technology business backed by Centrica, helping the team think through growth strategy, customer propositions and the practical use of its platform in larger energy projects.</p>
+          <p class="outcome">Contributed to discussions on pricing, partnerships, digital products and opportunities across sectors including healthcare, manufacturing and multi-site estates.</p>
+        </section>
+      </div>
+    </section>
+
+    <section class="perspective" aria-labelledby="perspective-title">
+      <h2 id="perspective-title">What I bring to a board discussion</h2>
+      <p>I tend to look at both sides of a decision. What does the customer need, and can the business actually deliver it? Are the numbers sensible? Have we got the right people involved? I don't mind asking awkward questions, but I prefer finding an answer to simply pointing out a problem.</p>
+      <p>I've always enjoyed working with people, whether that's colleagues, customers, management teams or shareholders. Good relationships matter, as does having a bit of fun while getting the work done.</p>
+      <a class="btn btn--ghost" href="/experience/">View my career history</a>
+    </section>
+    <p class="footnote">This page covers previous executive and non-executive board positions. My current role at Ameresco UK is Commercial & Sales Director and is not presented here as a board appointment. For a full employment history, see <a href={site.linkedin}>LinkedIn</a>.</p>
+  </article>
+</Base>
+<style>
+  .board { padding-top: var(--s-8); }
+  .intro { max-width: 56rem; margin-bottom: var(--s-9); }
+  .intro .label { margin-bottom: var(--s-4); }
+  .intro h1 { font-size: var(--step-5); line-height: 1.03; letter-spacing: -0.03em; max-width: 18ch; margin-bottom: var(--s-6); }
+  .intro .lede { font-size: var(--step-1); max-width: 49rem; }
+  .intro p + p { margin-top: var(--s-4); max-width: 45rem; }
+  .group { border-top: 2px solid var(--ink); padding-top: var(--s-6); margin-bottom: var(--s-9); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: var(--s-7); }
+  .group-heading .label { color: var(--red); margin-bottom: var(--s-4); }
+  .group-heading h2 { font-size: var(--step-3); line-height: 1.08; margin-bottom: var(--s-4); }
+  .group-heading p:last-child { color: var(--ink-2); max-width: 22rem; }
+  .roles { display: grid; gap: var(--s-5); }
+  .role { border-bottom: 1px solid var(--rule); padding-bottom: var(--s-6); }
+  .role-meta { display: flex; align-items: baseline; flex-wrap: wrap; gap: var(--s-3); }
+  .role-meta .label { color: var(--red); }
+  .tag { font-size: var(--step--2); border: 1px solid var(--rule); padding: 0.25rem 0.45rem; color: var(--ink-3); }
+  .role h3 { font-size: var(--step-3); margin: var(--s-3) 0 var(--s-1); }
+  .position { font-weight: 650; margin-bottom: var(--s-4); }
+  .role p:not(.position) { color: var(--ink-2); }
+  .role .outcome { margin-top: var(--s-3); color: var(--ink) !important; padding-left: var(--s-4); border-left: 3px solid var(--red); }
+  .perspective { padding: var(--s-7); background: var(--surface); border: 1px solid var(--rule); max-width: 59rem; }
+  .perspective h2 { font-size: var(--step-3); margin-bottom: var(--s-4); }
+  .perspective p { max-width: 48rem; margin-bottom: var(--s-4); }
+  .footnote { max-width: 52rem; margin: var(--s-7) 0; color: var(--ink-3); font-size: var(--step--1); }
+  @media (max-width: 52rem) {
+    .group { grid-template-columns: 1fr; gap: var(--s-5); }
+    .intro h1 { font-size: var(--step-4); }
+    .perspective { padding: var(--s-5); }
+  }
+</style>
