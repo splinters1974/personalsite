@@ -11,6 +11,17 @@ export function getStaticPaths() {
 const { p } = Astro.props as { p: Project };
 const i = publicProjects.findIndex((x) => x.slug === p.slug);
 const next = publicProjects[(i + 1) % publicProjects.length];
+const projectScreenshots: Record<string, { src: string; alt: string; caption: string }[]> = {
+  'uk-solar-calculator': [
+    { src: 'https://6b02e52347caa26629bc4d92--dapper-stardust-12411c.netlify.app/assets/solar-home.webp', alt: 'UK Solar Calculator homepage', caption: 'UK Solar Calculator homepage' },
+    { src: 'https://6b02e52347caa26629bc4d92--dapper-stardust-12411c.netlify.app/assets/solar-result.webp', alt: 'UK Solar Calculator results screen', caption: 'Solar calculator results' },
+  ],
+  'hh-insights': [
+    { src: 'https://6b02e52347caa26629bc4d92--dapper-stardust-12411c.netlify.app/assets/hh-home.webp', alt: 'HH Insights homepage', caption: 'HH Insights homepage' },
+    { src: 'https://6b02e52347caa26629bc4d92--dapper-stardust-12411c.netlify.app/assets/hh-result.webp', alt: 'HH Insights analysis screen', caption: 'Half-hourly data analysis' },
+  ],
+};
+const screenshots = projectScreenshots[p.slug] ?? [];
 const facts = [
   { k: 'Type', v: p.type },
   { k: 'Status', v: p.status },
@@ -27,8 +38,15 @@ const facts = [
       {p.link && <p class="cta"><a class="btn" href={p.link.url}>{p.link.label} <span aria-hidden="true">→</span></a></p>}
     </header>
 
-    {p.layout === 'feature' && (
-      <div class="placeholder-img hero-shot" role="img" aria-label={`Screenshot of ${p.name}, to be supplied`}>Main screenshot to supply</div>
+    {screenshots.length > 0 && (
+      <section class="screenshots" aria-label={`${p.name} screenshots`}>
+        {screenshots.map((shot, idx) => (
+          <figure class={idx === 0 ? 'shot primary' : 'shot secondary'}>
+            <img src={shot.src} alt={shot.alt} loading={idx === 0 ? 'eager' : 'lazy'} decoding="async" width="720" height="1140" />
+            <figcaption class="label">{shot.caption}</figcaption>
+          </figure>
+        ))}
+      </section>
     )}
 
     <dl class="facts">
@@ -44,12 +62,6 @@ const facts = [
         <h2>What it does</h2>
         <ul class="features">{p.features.map((f) => <li><T text={f} /></li>)}</ul>
       </section>
-      {p.layout === 'notes' && (
-        <div class="strip">
-          <div class="placeholder-img" role="img" aria-label="Screenshot, to be supplied">Screenshot</div>
-          <div class="placeholder-img" role="img" aria-label="Screenshot, to be supplied">Screenshot</div>
-        </div>
-      )}
       {p.documents && (
         <section>
           <h2>Documents</h2>
@@ -71,7 +83,10 @@ const facts = [
   h1 { font-size: var(--step-5); letter-spacing: -0.025em; line-height: 1; margin: var(--s-4) 0 var(--s-5); }
   .lede { max-width: 40rem; }
   .cta { margin-top: var(--s-5); }
-  .hero-shot { grid-column: 1 / -1; aspect-ratio: 16 / 8; margin-bottom: var(--s-7); }
+  .screenshots { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-5); margin-bottom: var(--s-7); }
+  .shot { margin: 0; min-width: 0; }
+  .shot img { display: block; width: 100%; max-height: 32rem; aspect-ratio: 4 / 3; object-fit: contain; object-position: center; background: var(--band); border: 1px solid var(--rule); }
+  .shot figcaption { margin-top: var(--s-2); color: var(--ink-3); }
   .facts { grid-column: 1 / 4; margin: 0; align-self: start; border-top: 1px solid var(--ink); }
   .facts div { padding-block: var(--s-3); border-bottom: 1px solid var(--rule); }
   .facts dd { margin: var(--s-1) 0 0; }
@@ -97,6 +112,7 @@ const facts = [
   @media (max-width: 52rem) {
     .head, .facts, .body, .layout-notes .head, .layout-notes .facts, .layout-notes .body { grid-column: 1 / -1; }
     .facts { margin-bottom: var(--s-6); display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--s-4); }
-    .hero-shot { aspect-ratio: 4 / 3; }
+    .screenshots { grid-template-columns: 1fr; }
+    .shot img { max-height: 30rem; }
   }
 </style>
