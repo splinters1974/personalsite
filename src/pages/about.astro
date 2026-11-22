@@ -11,8 +11,7 @@ import { about } from '../data/site';
     </header>
     <figure class="portrait">
       <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_3JHfNLjekklv2IsLBvSXs5fkIg3/ee9f88a6-a650-4115-a215-4155c2afb7d1.jpg" alt="Martyn Sheridan, informal portrait" loading="eager" width="1086" height="1448" />
-      <figcaption class="label">Hampshire, UK</figcaption>
-    </figure>}
+    </figure>
     <div class="body">
       {about.paragraphs.map((p, i) => <T text={p} as="p" class={i === 0 ? 'lede' : ''} />)}
       <h2 class="label sub">Outside work</h2>
@@ -33,7 +32,6 @@ import { about } from '../data/site';
   h1 { font-size: var(--step-4); letter-spacing: -0.02em; }
   .portrait { grid-column: 1 / 4; margin: 0; position: sticky; top: var(--s-5); align-self: start; }
   .portrait img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
-  .portrait figcaption { margin-top: var(--s-2); }
   .body { grid-column: 5 / 12; max-width: var(--measure); }
   .sub { margin-top: var(--s-7); margin-bottom: var(--s-3); }
   .interests { list-style: none; padding: 0; margin: 0 0 var(--s-6); border-top: 1px solid var(--rule); }
