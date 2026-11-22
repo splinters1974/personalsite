@@ -1,0 +1,26 @@
+---
+import { site } from '../data/site';
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="wrap grid">
+    <p class="who">© {year} {site.name}</p>
+    <p class="note">
+      Independent projects on this site are personal work. They are not products of,
+      affiliated with or endorsed by Ameresco.
+    </p>
+    <ul class="links">
+      <li><a href={`mailto:${site.email}`}>Email</a></li>
+      <li><a href="/contact/">LinkedIn</a></li>
+    </ul>
+  </div>
+</footer>
+
+<style>
+  .site-footer { border-top: 1px solid var(--rule); margin-top: var(--s-9); padding-block: var(--s-6) var(--s-7); }
+  .grid { display: grid; grid-template-columns: 1fr 2fr auto; gap: var(--s-5); align-items: start; font-size: var(--step--1); color: var(--ink-3); }
+  .note { max-width: 34rem; }
+  .links { list-style: none; margin: 0; padding: 0; display: flex; gap: var(--s-4); }
+  .links a { color: var(--ink-2); }
+  @media (max-width: 48rem) { .grid { grid-template-columns: 1fr; gap: var(--s-3); } }
+</style>

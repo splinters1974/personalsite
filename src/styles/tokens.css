@@ -1,0 +1,53 @@
+/* Design tokens. Change values here, not in components. */
+:root {
+  /* Colour */
+  --paper: #faf8f4;          /* warm white page */
+  --paper-2: #f2eee6;        /* subtle panels */
+  --ink: #17191d;            /* near-black text */
+  --ink-2: #4f5561;          /* secondary text (≈7:1 on paper) */
+  --ink-3: #6b7180;          /* tertiary text, meta (≈4.8:1 on paper) */
+  --rule: #e2ddd3;           /* hairlines */
+  --rule-strong: #c9c2b4;
+  --navy: #1f3a5f;           /* accent */
+  --navy-deep: #142843;
+  --navy-tint: #e7ecf2;
+  --focus: #1f3a5f;
+  --tbc-bg: #f6e8b8;         /* placeholder highlight */
+  --tbc-ink: #5c4a0c;
+  --ok: #2f5d3a;
+  --warn: #8a5a00;
+  --danger: #8f2d24;
+
+  /* Type */
+  --font-display: 'Newsreader Variable', 'Iowan Old Style', Georgia, serif;
+  --font-text: 'Hanken Grotesk Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --step--1: clamp(0.84rem, 0.82rem + 0.1vw, 0.9rem);
+  --step-0: clamp(1rem, 0.97rem + 0.15vw, 1.0625rem);
+  --step-1: clamp(1.18rem, 1.12rem + 0.3vw, 1.33rem);
+  --step-2: clamp(1.45rem, 1.32rem + 0.6vw, 1.8rem);
+  --step-3: clamp(1.8rem, 1.55rem + 1.2vw, 2.6rem);
+  --step-4: clamp(2.3rem, 1.8rem + 2.4vw, 3.9rem);
+  --step-5: clamp(2.9rem, 1.9rem + 5vw, 6.6rem);
+
+  /* Space */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4.5rem;
+  --s-9: 7rem;
+
+  /* Layout */
+  --page-max: 76rem;
+  --measure: 38rem;
+  --gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem);
+
+  /* Shape and motion */
+  --radius: 3px;
+  --ease: cubic-bezier(0.2, 0.6, 0.2, 1);
+  --dur: 180ms;
+}

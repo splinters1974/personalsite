@@ -1,0 +1,102 @@
+---
+import Base from '../../layouts/Base.astro';
+import T from '../../components/T.astro';
+import { publicProjects, type Project } from '../../data/site';
+
+export function getStaticPaths() {
+  // Only public projects are ever pre-rendered. Private and draft projects
+  // never reach the static build, so nothing about them ships to the browser.
+  return publicProjects.map((p) => ({ params: { slug: p.slug }, props: { p } }));
+}
+const { p } = Astro.props as { p: Project };
+const i = publicProjects.findIndex((x) => x.slug === p.slug);
+const next = publicProjects[(i + 1) % publicProjects.length];
+const facts = [
+  { k: 'Type', v: p.type },
+  { k: 'Status', v: p.status },
+  { k: 'For', v: p.audience },
+  { k: 'Updated', v: p.updated },
+];
+---
+<Base title={p.name} description={p.summary}>
+  <article class={`wrap project layout-${p.layout}`}>
+    <header class="head">
+      <p class="label"><a href="/projects/">Projects</a> / {p.type}</p>
+      <h1>{p.name}</h1>
+      <T text={p.summary} as="p" class="lede" />
+      {p.link && <p class="cta"><a class="btn" href={p.link.url}>{p.link.label} <span aria-hidden="true">→</span></a></p>}
+    </header>
+
+    {p.layout === 'feature' && (
+      <div class="placeholder-img hero-shot" role="img" aria-label={`Screenshot of ${p.name}, to be supplied`}>Main screenshot to supply</div>
+    )}
+
+    <dl class="facts">
+      {facts.map((f) => <div><dt class="label">{f.k}</dt><dd><T text={f.v} /></dd></div>)}
+    </dl>
+
+    <div class="body">
+      <section>
+        <h2>Why I built it</h2>
+        <T text={p.purpose} as="p" />
+      </section>
+      <section>
+        <h2>What it does</h2>
+        <ul class="features">{p.features.map((f) => <li><T text={f} /></li>)}</ul>
+      </section>
+      {p.layout === 'notes' && (
+        <div class="strip">
+          <div class="placeholder-img" role="img" aria-label="Screenshot, to be supplied">Screenshot</div>
+          <div class="placeholder-img" role="img" aria-label="Screenshot, to be supplied">Screenshot</div>
+        </div>
+      )}
+      {p.documents && (
+        <section>
+          <h2>Documents</h2>
+          <ul class="docs">{p.documents.map((d) => <li><a href="#"><T text={d.name} /></a> <span class="muted">PDF, {d.size}</span></li>)}</ul>
+        </section>
+      )}
+    </div>
+
+    <nav class="next" aria-label="Next project">
+      <span class="label">Next project</span>
+      <a href={`/projects/${next.slug}/`}>{next.name}</a>
+    </nav>
+  </article>
+</Base>
+<style>
+  .project { padding-top: var(--s-8); display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--s-5); }
+  .head { grid-column: 1 / 10; margin-bottom: var(--s-7); }
+  .head .label a { color: inherit; }
+  h1 { font-size: var(--step-5); font-weight: 380; letter-spacing: -0.025em; line-height: 1; margin: var(--s-4) 0 var(--s-5); }
+  .lede { max-width: 40rem; }
+  .cta { margin-top: var(--s-5); }
+  .hero-shot { grid-column: 1 / -1; aspect-ratio: 16 / 8; margin-bottom: var(--s-7); }
+  .facts { grid-column: 1 / 4; margin: 0; align-self: start; border-top: 1px solid var(--ink); }
+  .facts div { padding-block: var(--s-3); border-bottom: 1px solid var(--rule); }
+  .facts dd { margin: var(--s-1) 0 0; }
+  .body { grid-column: 5 / 12; }
+  .body section + section, .body .strip { margin-top: var(--s-7); }
+  .body h2 { font-size: var(--step-2); margin-bottom: var(--s-4); }
+  .features { padding: 0; list-style: none; border-top: 1px solid var(--rule); }
+  .features li { padding-block: var(--s-3); border-bottom: 1px solid var(--rule); }
+  .docs { padding-left: 1.1em; }
+  .strip { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-4); }
+  .strip > div { aspect-ratio: 4 / 3; }
+
+  /* "notes" layout: narrow, long-form, facts run across the top */
+  .layout-notes .head { grid-column: 3 / 11; }
+  .layout-notes .facts { grid-column: 3 / 11; display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-4); margin-bottom: var(--s-7); }
+  .layout-notes .facts div { border-bottom: 0; }
+  .layout-notes .body { grid-column: 3 / 11; }
+
+  .next { grid-column: 1 / -1; margin-top: var(--s-9); padding-top: var(--s-5); border-top: 1px solid var(--ink); display: flex; flex-direction: column; gap: var(--s-2); }
+  .next a { font-family: var(--font-display); font-size: var(--step-3); text-decoration: none; }
+  .next a:hover { text-decoration: underline; text-decoration-thickness: 1px; }
+
+  @media (max-width: 52rem) {
+    .head, .facts, .body, .layout-notes .head, .layout-notes .facts, .layout-notes .body { grid-column: 1 / -1; }
+    .facts { margin-bottom: var(--s-6); display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--s-4); }
+    .hero-shot { aspect-ratio: 4 / 3; }
+  }
+</style>

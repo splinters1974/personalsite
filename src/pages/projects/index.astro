@@ -1,0 +1,58 @@
+---
+import Base from '../../layouts/Base.astro';
+import T from '../../components/T.astro';
+import { publicProjects } from '../../data/site';
+---
+<Base title="Projects" description="Independent digital projects by Martyn Sheridan: calculators, web apps, prototypes and documents.">
+  <div class="wrap">
+    <header class="head">
+      <p class="label">Projects</p>
+      <h1>Independent tools and experiments.</h1>
+      <p class="lede">Things I have built in my own time. Some are finished, some are still being tested. Private projects are shared by invitation only and are not listed here.</p>
+    </header>
+
+    <table class="index">
+      <caption class="visually-hidden">Public projects</caption>
+      <thead>
+        <tr><th scope="col">No.</th><th scope="col">Project</th><th scope="col">Type</th><th scope="col">Status</th><th scope="col">Updated</th></tr>
+      </thead>
+      <tbody>
+        {publicProjects.map((p, i) => (
+          <tr>
+            <td class="num">{String(i + 1).padStart(2, '0')}</td>
+            <th scope="row">
+              <a href={`/projects/${p.slug}/`}>{p.name}</a>
+              <T text={p.summary} as="span" class="sum" />
+            </th>
+            <td data-label="Type">{p.type}</td>
+            <td data-label="Status"><T text={p.status} /></td>
+            <td data-label="Updated"><T text={p.updated} /></td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</Base>
+<style>
+  .head { padding-top: var(--s-8); max-width: 48rem; margin-bottom: var(--s-7); }
+  .head .label { margin-bottom: var(--s-4); }
+  h1 { font-size: var(--step-4); font-weight: 380; letter-spacing: -0.02em; margin-bottom: var(--s-5); }
+  .index { width: 100%; border-collapse: collapse; }
+  thead th { text-align: left; font: 560 var(--step--1)/1.2 var(--font-text); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); padding: 0 var(--s-4) var(--s-3) 0; border-bottom: 1px solid var(--ink); }
+  td, tbody th { text-align: left; vertical-align: baseline; padding: var(--s-5) var(--s-4) var(--s-5) 0; border-bottom: 1px solid var(--rule); font-size: var(--step--1); color: var(--ink-2); }
+  tbody th { font-weight: 400; width: 50%; }
+  tbody th a { display: block; font-family: var(--font-display); font-size: var(--step-2); color: var(--ink); text-decoration: none; margin-bottom: var(--s-2); }
+  tbody th a:hover { color: var(--navy); text-decoration: underline; text-decoration-thickness: 1px; }
+  .sum { display: block; max-width: 34rem; }
+  .num { color: var(--ink-3); font-variant-numeric: tabular-nums; width: 3rem; }
+  @media (max-width: 44rem) {
+    thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+    .index, tbody, tr, td, tbody th { display: block; width: 100%; }
+    tr { border-bottom: 1px solid var(--rule); padding-block: var(--s-5); }
+    td, tbody th { border: 0; padding: 0; }
+    .num { margin-bottom: var(--s-2); }
+    td[data-label] { display: flex; gap: var(--s-3); margin-top: var(--s-1); }
+    td[data-label]::before { content: attr(data-label); min-width: 5rem; color: var(--ink-3); }
+    tbody th { margin-bottom: var(--s-3); }
+  }
+</style>

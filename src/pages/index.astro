@@ -1,0 +1,140 @@
+---
+import Base from '../layouts/Base.astro';
+import T from '../components/T.astro';
+import { site, home, featuredProjects } from '../data/site';
+
+const jsonld = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.name,
+  jobTitle: site.role,
+  worksFor: { '@type': 'Organization', name: site.employer },
+  address: { '@type': 'PostalAddress', addressRegion: 'Hampshire', addressCountry: 'GB' },
+  url: site.url,
+};
+---
+<Base jsonld={jsonld}>
+  <section class="intro wrap">
+    <p class="label meta">{site.location}</p>
+    <h1 class="name">Martyn<br /> Sheridan</h1>
+    <div class="lede intro-text"><T text={home.intro} as="p" /></div>
+  </section>
+
+  <section class="wrap brief" aria-labelledby="brief-h">
+    <h2 id="brief-h" class="label">In brief</h2>
+    <dl>
+      {home.inBrief.map((row) => (
+        <div class="row">
+          <dt>{row.label}</dt>
+          <dd><T text={row.value} /></dd>
+        </div>
+      ))}
+    </dl>
+    <p class="more"><a href="/experience/">Selected experience</a></p>
+  </section>
+
+  <section class="wrap work" aria-labelledby="work-h">
+    <div class="work-head">
+      <h2 id="work-h" class="section-title">Selected projects</h2>
+      <a href="/projects/">All projects</a>
+    </div>
+    <ol class="work-list">
+      {featuredProjects.map((p, i) => (
+        <li class={i === 0 ? 'lead' : ''}>
+          <a href={`/projects/${p.slug}/`} class="work-link">
+            {i === 0 && <div class="placeholder-img shot" aria-hidden="true">Screenshot to supply</div>}
+            <span class="num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            <span class="title">{p.name}</span>
+            <span class="kind label">{p.type}</span>
+            <T text={p.summary} as="span" class="sum muted" />
+          </a>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section class="wrap about-teaser" aria-labelledby="about-h">
+    <div class="placeholder-img photo" role="img" aria-label="Photograph of Martyn Sheridan, to be supplied">Photograph to supply</div>
+    <div>
+      <h2 id="about-h" class="section-title">About</h2>
+      <T text={home.aboutTeaser} as="p" class="muted" />
+      <p><a href="/about/">More about me</a></p>
+    </div>
+  </section>
+
+  <section class="wrap contact-strip" aria-labelledby="contact-h">
+    <h2 id="contact-h" class="label">Get in touch</h2>
+    <a class="big-mail" href={`mailto:${site.email}`}>{site.email}</a>
+  </section>
+</Base>
+
+<style>
+  .intro { padding-block: var(--s-8) var(--s-7); display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--s-5); }
+  .meta { grid-column: 1 / -1; margin-bottom: var(--s-5); }
+  .name {
+    grid-column: 1 / 10;
+    font-size: var(--step-5);
+    font-weight: 380;
+    line-height: 0.95;
+    letter-spacing: -0.025em;
+  }
+  .intro-text { grid-column: 6 / 13; margin-top: var(--s-6); max-width: 34rem; }
+
+  .brief { display: grid; grid-template-columns: 1fr 3fr; gap: var(--s-5); padding-block: var(--s-6); border-top: 1px solid var(--rule); }
+  .brief h2 { padding-top: 0.2rem; }
+  dl { margin: 0; }
+  .row { display: grid; grid-template-columns: 9rem 1fr; gap: var(--s-4); padding-block: var(--s-3); border-bottom: 1px solid var(--rule); }
+  .row:first-child { padding-top: 0; }
+  dt { color: var(--ink-3); font-size: var(--step--1); padding-top: 0.15rem; }
+  dd { margin: 0; font-size: var(--step-1); font-family: var(--font-display); }
+  .more { grid-column: 2; margin-top: var(--s-2); font-size: var(--step--1); }
+
+  .section-title { font-size: var(--step-3); }
+  .work { padding-block: var(--s-8) var(--s-6); }
+  .work-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: var(--s-6); }
+  .work-head a { font-size: var(--step--1); }
+  .work-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ink); }
+  .work-list li { border-bottom: 1px solid var(--rule); }
+  .work-link {
+    display: grid; grid-template-columns: 3rem minmax(0, 1.2fr) 8rem minmax(0, 1.6fr);
+    gap: var(--s-4); align-items: baseline; padding-block: var(--s-5);
+    color: inherit; text-decoration: none;
+  }
+  .num { font-size: var(--step--1); color: var(--ink-3); font-variant-numeric: tabular-nums; }
+  .title { font-family: var(--font-display); font-size: var(--step-2); }
+  .sum { font-size: var(--step--1); }
+  .work-link:hover .title { color: var(--navy); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+  .lead .shot { grid-column: 2 / -1; aspect-ratio: 16 / 6; margin-bottom: var(--s-4); }
+
+  .about-teaser { display: grid; grid-template-columns: 1fr 3fr; gap: var(--s-6); padding-block: var(--s-8); align-items: start; }
+  .photo { aspect-ratio: 4 / 5; max-width: 12rem; }
+  .about-teaser .section-title { margin-bottom: var(--s-4); }
+  .about-teaser p { max-width: var(--measure); }
+
+  .contact-strip { border-top: 1px solid var(--rule); padding-top: var(--s-6); }
+  .big-mail {
+    display: inline-block; margin-top: var(--s-3);
+    font-family: var(--font-display); font-size: var(--step-4); font-weight: 380;
+    letter-spacing: -0.02em; overflow-wrap: anywhere; line-height: 1.1;
+  }
+
+  /* Tablet */
+  @media (max-width: 60rem) {
+    .intro-text { grid-column: 4 / 13; }
+    .work-link { grid-template-columns: 2.5rem 1fr 7rem; }
+    .sum { grid-column: 2 / -1; }
+  }
+  /* Mobile */
+  @media (max-width: 40rem) {
+    .intro { padding-block: var(--s-7) var(--s-6); }
+    .name, .intro-text { grid-column: 1 / -1; }
+    .brief { grid-template-columns: 1fr; gap: var(--s-4); }
+    .row { grid-template-columns: 1fr; gap: 0; }
+    .more { grid-column: 1; }
+    .work-link { grid-template-columns: 2rem 1fr; row-gap: var(--s-1); }
+    .kind, .sum { grid-column: 2; }
+    .lead .shot { grid-column: 1 / -1; aspect-ratio: 4 / 3; }
+    .about-teaser { grid-template-columns: 6rem 1fr; gap: var(--s-4); }
+    .big-mail { font-size: var(--step-2); }
+  }
+</style>
