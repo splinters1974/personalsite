@@ -140,9 +140,9 @@ const jsonld = {
       {featuredProjects.map((p, i) => (
         <a href={`/projects/${p.slug}/`} class={`work-item w-${i}`}>
           <div class="browser" aria-hidden="true">
-            <div class="browser-bar"><i></i><i></i><i></i><span>{p.slug}.app</span></div>
+            <div class="browser-bar"><i></i><i></i><i></i><span>{p.slug === 'uk-solar-calculator' ? 'uksolarcalculator.co.uk' : 'hhinsights.co.uk'}</span></div>
             <div class="browser-body">
-              <img src={p.slug === 'uk-solar-calculator' ? '/assets/solar-home.webp' : '/assets/hh-home.webp'} alt={p.slug === 'uk-solar-calculator' ? 'UK Solar Calculator website preview' : 'HH Insights website preview'} loading="lazy" width="720" height="550" />
+              <img src={p.slug === 'uk-solar-calculator' ? 'https://6b02e52347caa26629bc4d92--dapper-stardust-12411c.netlify.app/assets/solar-home.webp' : 'https://6b02e52347caa26629bc4d92--dapper-stardust-12411c.netlify.app/assets/hh-home.webp'} alt={p.slug === 'uk-solar-calculator' ? 'UK Solar Calculator website preview' : 'HH Insights website preview'} loading="lazy" width="720" height="550" />
             </div>
           </div>
           <div class="work-meta">
