@@ -97,12 +97,6 @@ export const home = {
     { step: 'Negotiate', text: 'Be clear about what matters, keep the discussion constructive and avoid giving away value for nothing.' },
     { step: 'Deliver', text: 'A signed contract is only the start. The team delivering it needs to know exactly what has been agreed.' },
   ],
-  pov: '[[The best ideas usually come from a straightforward question: what problem are we actually trying to solve?]]',
-  povAttribution: '[[Draft personal perspective, for Martyn to approve]]',
-  photos: [
-    { caption: '[[On site: solar, battery or CHP project]]', ratio: 'wide' },
-    { caption: '[[Speaking at an industry event]]', ratio: 'tall' },
-  ],
   aboutTeaser:
     'I started in advertising sales and somehow ended up spending 15 years in energy. Outside work, rugby, films and cooking have always been important to me. More recently I’ve been seeing what I can create with AI, even though I’m not a developer.',
 };
@@ -139,8 +133,6 @@ export const experience: ExperienceEntry[] = [
       'I lead sales, commercial, procurement, bid management and marketing across the UK business. My focus is on building the right team, improving how we choose and manage opportunities, and helping the business grow sensibly.',
     wins: [
       'Worked on the sales and commercial structure, with clearer pipeline reporting and bid reviews',
-      '[[Built the grid scale team, now pursuing 1GW of ground-mount battery and solar projects]]',
-      '[[300MW battery storage project closed and in pre-construction]]',
     ],
   },
   {
@@ -259,48 +251,33 @@ export const projects: Project[] = [
     status: 'Live website',
     visibility: 'public',
     featured: true,
-    updated: '[[Date to confirm]]',
+    updated: '',
     layout: 'feature',
     summary:
       'I wanted a straightforward way to explore what rooftop solar could mean for a UK property, without starting with a sales pitch.',
     purpose:
       'There is no shortage of information about solar, but not all of it is easy to make sense of. I built this to make the first questions easier to explore.',
     audience: 'People exploring solar in the UK',
-    features: ['UK-focused solar estimates', 'A starting point for understanding the potential of a rooftop system', '[[Detailed functionality and assumptions to confirm]]'],
+    features: ['UK-focused solar estimates', 'A starting point for understanding the potential of a rooftop system'],
     link: { url: 'https://uksolarcalculator.co.uk/', label: 'Open the calculator', protection: 'none' },
   },
   {
     slug: 'hh-insights',
     name: 'HH Insights',
     type: 'Web app',
-    status: '[[Status to confirm]]',
+    status: 'Live website',
     visibility: 'public',
     featured: true,
-    updated: '[[Month Year]]',
+    updated: '',
     layout: 'notes',
     summary:
       'HH Insights is an independent project exploring what half-hourly electricity data can tell us about how a site uses energy.',
     purpose:
       'Half-hourly data can be useful, but most people do not want to spend hours looking through spreadsheets. The aim is to make that information easier to work with.',
     audience: 'People working with half-hourly electricity data',
-    features: ['Focus on UK half-hourly electricity consumption', 'Clearer presentation of detailed usage information', '[[Detailed functionality and upload arrangements to confirm]]'],
+    features: ['Focus on UK half-hourly electricity consumption', 'Clearer presentation of detailed usage information'],
     link: { url: 'https://hhinsights.co.uk/', label: 'Visit HH Insights', protection: 'none' },
     
-  },
-  {
-    slug: 'hospital-energy-insights',
-    name: 'Hospital Energy Insights',
-    type: 'Prototype',
-    status: 'In testing',
-    visibility: 'private',
-    featured: false,
-    updated: '[[Month Year]]',
-    layout: 'feature',
-    summary: '[[Private prototype. Shown here only to demonstrate the access gateway.]]',
-    purpose: '',
-    audience: 'Invited testers',
-    features: [],
-    link: { url: '#', label: 'Open prototype', protection: 'portal-only' },
   },
 ];
 
