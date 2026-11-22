@@ -1,7 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
 import T from '../components/T.astro';
-import LoadProfile from '../components/LoadProfile.astro';
 import { site, home, featuredProjects } from '../data/site';
 import { plain, PROTO, live } from '../data/text';
 
@@ -17,7 +16,7 @@ const jsonld = {
 };
 ---
 <Base jsonld={jsonld} description={plain(home.intro)}>
-  <!-- 1. Hero: headline + signature chart. Always dark. -->
+  <!-- 1. Personal introduction. Always dark. -->
   <section class="hero" aria-labelledby="hero-h">
     <div class="wrap">
       <p class="label kicker">{site.role} · {site.employer}</p>
@@ -29,10 +28,6 @@ const jsonld = {
             <a class="btn" href="/contact/">Start a conversation <span class="arrow" aria-hidden="true">→</span></a>
             <a class="btn btn--ghost" href="/experience/">Track record</a>
           </div>
-        </div>
-        <div class="hero-chart">
-          <p class="label chart-head"><span>An illustrative energy profile</span><span>Solar and battery example</span></p>
-          <LoadProfile id="hero-lp" />
         </div>
       </div>
     </div>
@@ -219,7 +214,7 @@ const jsonld = {
   .hero .label { color: var(--band-ink-2); }
   .hero .kicker::before { background: var(--band-red); }
   .hero h1 { font-size: min(var(--step-5), 8.4vw); font-weight: 800; line-height: 0.96; letter-spacing: -0.035em; margin: var(--s-5) 0 var(--s-7); max-width: 16ch; }
-  .hero-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); gap: var(--s-7); align-items: end; }
+  .hero-row { display: block; max-width: 50rem; }
   .hero-copy { min-width: 0; }
   .hero-intro { font-size: var(--step-1); color: var(--band-ink-2); }
   .hero-cta { display: flex; flex-wrap: wrap; gap: var(--s-3); margin-top: var(--s-6); }
@@ -228,8 +223,6 @@ const jsonld = {
   .hero .btn--ghost { background: transparent; color: var(--band-ink); border-color: rgba(238, 241, 246, 0.5); }
   .hero .btn--ghost:hover { background: var(--band-ink); color: var(--band); border-color: var(--band-ink); }
   .hero .tbc { text-decoration-color: #ff6b79; background: rgba(255, 77, 94, 0.12); }
-  .hero-chart { min-width: 0; border: 1px solid var(--band-rule); background: rgba(8, 17, 31, 0.6); padding: var(--s-4) var(--s-4) var(--s-3); }
-  .chart-head { display: flex; justify-content: space-between; gap: var(--s-3); margin-bottom: var(--s-3); }
 
   /* 2. Figures */
   .figures { background: var(--red); color: #fff; }
