@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import T from '../components/T.astro';
 import { site, home, featuredProjects } from '../data/site';
-import { plain, PROTO, live } from '../data/text';
+import { plain, live } from '../data/text';
 
 const jsonld = {
   '@context': 'https://schema.org',
@@ -116,15 +116,15 @@ const jsonld = {
   </section>
 
   <!-- 7. Photo strip -->
-  {PROTO && <section class="photos wrap" aria-label="Photography">
-    {home.photos.map((ph, i) => (
-      <figure class={`photo ph-${ph.ratio}`}>
-        <div class="ph-frame placeholder-img" role="img" aria-label="Photograph to be supplied">
-          <span>Photo {i + 1} to supply</span>
-        </div>
-        <figcaption class="label"><T text={ph.caption} /></figcaption>
-      </figure>
-    ))}
+  <section class="photos wrap" aria-label="Photographs">
+    <figure class="photo ph-wide">
+      <img class="ph-frame" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3JHfNLjekklv2IsLBvSXs5fkIg3/d4a72847-ab1c-486c-b430-e0c6f2e0c2ac.jpg" alt="Martyn in London with the city skyline at night" loading="lazy" width="1152" height="1536" />
+      <figcaption class="label">Outside the office</figcaption>
+    </figure>
+    <figure class="photo ph-tall">
+      <img class="ph-frame" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3JHfNLjekklv2IsLBvSXs5fkIg3/9b764426-f51e-4f35-a834-8c725213059d.jpg" alt="Portrait of Martyn Sheridan" loading="lazy" width="1122" height="1402" />
+      <figcaption class="label">Martyn Sheridan</figcaption>
+    </figure>
   </section>}
 
   <!-- 8. Projects -->
@@ -141,7 +141,9 @@ const jsonld = {
         <a href={`/projects/${p.slug}/`} class={`work-item w-${i}`}>
           <div class="browser" aria-hidden="true">
             <div class="browser-bar"><i></i><i></i><i></i><span>{p.slug}.app</span></div>
-            {i === 0 ? <div class="browser-body"><LoadProfile compact id={`w-lp-${i}`} /></div> : <div class="browser-body placeholder-img">Screenshot to supply</div>}
+            <div class="browser-body">
+              <img src={p.slug === 'uk-solar-calculator' ? '/assets/solar-home.webp' : '/assets/hh-home.webp'} alt={p.slug === 'uk-solar-calculator' ? 'UK Solar Calculator website preview' : 'HH Insights website preview'} loading="lazy" width="720" height="550" />
+            </div>
           </div>
           <div class="work-meta">
             <span class="label label--red">{p.type}</span>
@@ -155,11 +157,11 @@ const jsonld = {
   </section>}
 
   <!-- 9. About -->
-  <section class={`wrap about-teaser ${PROTO ? '' : 'no-photo'}`} aria-labelledby="about-h">
-    {PROTO && <div class="photo-slot">
-      <div class="placeholder-img portrait" role="img" aria-label="Photograph of Martyn Sheridan, to be supplied">Portrait to supply</div>
+  <section class="wrap about-teaser" aria-labelledby="about-h">
+    <div class="photo-slot">
+      <img class="portrait" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3JHfNLjekklv2IsLBvSXs5fkIg3/ee9f88a6-a650-4115-a215-4155c2afb7d1.jpg" alt="Casual portrait of Martyn Sheridan" loading="lazy" width="1086" height="1448" />
       <span class="corner" aria-hidden="true"></span>
-    </div>}
+    </div>
     <div>
       <p class="label kicker">About</p>
       <h2 id="about-h">A little more about me.</h2>
@@ -296,7 +298,7 @@ const jsonld = {
   /* 7. Photos */
   .photos { display: grid; grid-template-columns: 2fr 1fr; gap: var(--s-5); padding-top: var(--s-9); align-items: end; }
   .photo { margin: 0; min-width: 0; }
-  .ph-frame { width: 100%; }
+  .ph-frame { width: 100%; display: block; object-fit: cover; object-position: center 35%; }
   .ph-wide .ph-frame { aspect-ratio: 16 / 9; }
   .ph-tall .ph-frame { aspect-ratio: 4 / 5; }
   .photo figcaption { margin-top: var(--s-2); }
@@ -311,7 +313,8 @@ const jsonld = {
   .browser-bar i { width: 9px; height: 9px; border-radius: 50%; background: #2a3a57; }
   .browser-bar i:first-child { background: var(--band-red); }
   .browser-bar span { margin-left: var(--s-3); font: 400 0.7rem/1 var(--font-mono); color: var(--band-ink-2); }
-  .browser-body { aspect-ratio: 16 / 10; padding: var(--s-5); display: grid; align-items: center; }
+  .browser-body { aspect-ratio: 16 / 10; padding: var(--s-3); display: grid; align-items: center; overflow: hidden; }
+  .browser-body img { width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 2px; }
   .browser-body.placeholder-img { border: 0; padding: var(--s-4); }
   .work-meta { display: flex; flex-direction: column; gap: var(--s-3); }
   .work-meta h3 { font-size: var(--step-3); }
@@ -322,7 +325,7 @@ const jsonld = {
   .about-teaser { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: var(--s-8); padding-top: var(--s-9); align-items: center; }
   .about-teaser.no-photo { grid-template-columns: minmax(0, 1fr); max-width: 52rem; margin-left: max(var(--gutter), calc((100% - var(--page-max)) / 2)); }
   .photo-slot { position: relative; max-width: 24rem; }
-  .portrait { aspect-ratio: 4 / 5; position: relative; z-index: 1; }
+  .portrait { aspect-ratio: 4 / 5; width: 100%; display: block; object-fit: cover; position: relative; z-index: 1; }
   .corner { position: absolute; inset: var(--s-5) calc(-1 * var(--s-5)) calc(-1 * var(--s-5)) var(--s-5); border: 2px solid var(--red); z-index: 0; }
   .about-teaser h2 { font-size: var(--step-4); margin: var(--s-4) 0 var(--s-5); }
   .about-teaser .lede { max-width: var(--measure); margin-bottom: var(--s-6); }
