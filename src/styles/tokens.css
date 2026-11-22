@@ -1,53 +1,108 @@
-/* Design tokens. Change values here, not in components. */
+/*
+ * Design tokens. Boardroom direction: deep navy, signal red, expanded grotesque.
+ * Light values on :root, dark values for system-dark (unless forced light)
+ * and for an explicit data-theme="dark" choice.
+ */
 :root {
-  /* Colour */
-  --paper: #faf8f4;          /* warm white page */
-  --paper-2: #f2eee6;        /* subtle panels */
-  --ink: #17191d;            /* near-black text */
-  --ink-2: #4f5561;          /* secondary text (≈7:1 on paper) */
-  --ink-3: #6b7180;          /* tertiary text, meta (≈4.8:1 on paper) */
-  --rule: #e2ddd3;           /* hairlines */
-  --rule-strong: #c9c2b4;
-  --navy: #1f3a5f;           /* accent */
-  --navy-deep: #142843;
-  --navy-tint: #e7ecf2;
-  --focus: #1f3a5f;
-  --tbc-bg: #f6e8b8;         /* placeholder highlight */
-  --tbc-ink: #5c4a0c;
-  --ok: #2f5d3a;
+  /* Colour: light */
+  --bg: #f4f5f8;            /* cool paper */
+  --surface: #ffffff;
+  --surface-2: #e9ecf2;
+  --ink: #0b1628;           /* navy-black text */
+  --ink-2: #3b4658;         /* ≈9:1 */
+  --ink-3: #5b6578;         /* ≈5.5:1 */
+  --rule: #d5dae3;
+  --rule-strong: #0b1628;
+  --navy: #13294b;
+  --navy-2: #1d3d6e;
+  --red: #b3122e;           /* signal red, ≈6.4:1 on --bg */
+  --red-ink: #ffffff;       /* text on red */
+  --band: #0b1628;          /* always-dark band */
+  --band-ink: #eef1f6;
+  --band-ink-2: #a9b4c7;
+  --band-rule: #22324d;
+  --band-red: #ff4d5e;
+  --focus: #b3122e;
+  --tbc-line: #b3122e;
+  --tbc-bg: rgba(179, 18, 46, 0.07);
+  --ok: #1d6b45;
   --warn: #8a5a00;
-  --danger: #8f2d24;
+  --danger: #b3122e;
+  color-scheme: light;
 
   /* Type */
-  --font-display: 'Newsreader Variable', 'Iowan Old Style', Georgia, serif;
-  --font-text: 'Hanken Grotesk Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Archivo Variable', 'Arial Narrow', Arial, sans-serif;
+  --font-text: 'Archivo Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --display-stretch: 125%;  /* expanded width for headlines */
 
-  --step--1: clamp(0.84rem, 0.82rem + 0.1vw, 0.9rem);
+  --step--2: 0.75rem;
+  --step--1: clamp(0.82rem, 0.8rem + 0.1vw, 0.88rem);
   --step-0: clamp(1rem, 0.97rem + 0.15vw, 1.0625rem);
-  --step-1: clamp(1.18rem, 1.12rem + 0.3vw, 1.33rem);
-  --step-2: clamp(1.45rem, 1.32rem + 0.6vw, 1.8rem);
-  --step-3: clamp(1.8rem, 1.55rem + 1.2vw, 2.6rem);
-  --step-4: clamp(2.3rem, 1.8rem + 2.4vw, 3.9rem);
-  --step-5: clamp(2.9rem, 1.9rem + 5vw, 6.6rem);
+  --step-1: clamp(1.15rem, 1.1rem + 0.3vw, 1.3rem);
+  --step-2: clamp(1.4rem, 1.25rem + 0.7vw, 1.85rem);
+  --step-3: clamp(1.75rem, 1.45rem + 1.4vw, 2.7rem);
+  --step-4: clamp(2.2rem, 1.6rem + 2.8vw, 4rem);
+  --step-5: clamp(2.6rem, 1.5rem + 5vw, 6.2rem);
 
   /* Space */
-  --s-1: 0.25rem;
-  --s-2: 0.5rem;
-  --s-3: 0.75rem;
-  --s-4: 1rem;
-  --s-5: 1.5rem;
-  --s-6: 2rem;
-  --s-7: 3rem;
-  --s-8: 4.5rem;
-  --s-9: 7rem;
+  --s-1: 0.25rem; --s-2: 0.5rem; --s-3: 0.75rem; --s-4: 1rem; --s-5: 1.5rem;
+  --s-6: 2rem; --s-7: 3rem; --s-8: 4.5rem; --s-9: 7rem;
 
-  /* Layout */
-  --page-max: 76rem;
-  --measure: 38rem;
-  --gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem);
+  --page-max: 80rem;
+  --measure: 40rem;
+  --gutter: clamp(1rem, 0.5rem + 2.5vw, 2.75rem);
 
-  /* Shape and motion */
-  --radius: 3px;
+  --radius: 2px;
   --ease: cubic-bezier(0.2, 0.6, 0.2, 1);
   --dur: 180ms;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: #08111f;
+    --surface: #0e1a2e;
+    --surface-2: #13223a;
+    --ink: #eef1f6;
+    --ink-2: #c0c8d6;
+    --ink-3: #8f9bb0;
+    --rule: #1f2e47;
+    --rule-strong: #eef1f6;
+    --navy: #8fb0e3;
+    --navy-2: #b4cbef;
+    --red: #ff4d5e;
+    --red-ink: #08111f;
+    --band: #050b16;
+    --band-rule: #1a2840;
+    --focus: #ff4d5e;
+    --tbc-line: #ff6b79;
+    --tbc-bg: rgba(255, 77, 94, 0.1);
+    --ok: #5fcf95;
+    --warn: #f0b44c;
+    --danger: #ff6b79;
+    color-scheme: dark;
+  }
+}
+:root[data-theme='dark'] {
+  --bg: #08111f;
+  --surface: #0e1a2e;
+  --surface-2: #13223a;
+  --ink: #eef1f6;
+  --ink-2: #c0c8d6;
+  --ink-3: #8f9bb0;
+  --rule: #1f2e47;
+  --rule-strong: #eef1f6;
+  --navy: #8fb0e3;
+  --navy-2: #b4cbef;
+  --red: #ff4d5e;
+  --red-ink: #08111f;
+  --band: #050b16;
+  --band-rule: #1a2840;
+  --focus: #ff4d5e;
+  --tbc-line: #ff6b79;
+  --tbc-bg: rgba(255, 77, 94, 0.1);
+  --ok: #5fcf95;
+  --warn: #f0b44c;
+  --danger: #ff6b79;
+  color-scheme: dark;
 }

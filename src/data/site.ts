@@ -22,17 +22,53 @@ export const site = {
 };
 
 export const home = {
-  // Brief 3.1 suggested copy. Not approved final wording.
+  // Proposed positioning copy. Not approved final wording.
+  headline: '[[Commercial leadership that turns decarbonisation into signed contracts.]]',
   intro:
-    '[[Commercial & Sales Director at Ameresco UK. A career in commercial leadership and the energy sector, alongside an interest in building practical digital tools and independent projects.]]',
-  inBrief: [
-    { label: 'Now', value: 'Commercial & Sales Director, Ameresco UK' },
-    { label: 'Career', value: 'Around 30 years in sales and commercial roles' },
-    { label: 'Sector', value: '15 years in energy, focused on decarbonisation' },
-    { label: 'On the side', value: 'Building practical digital tools, independently of my employer' },
+    '[[Commercial & Sales Director at Ameresco UK. Around 30 years building pipelines, shaping deals and closing them, the last 15 in energy. I lead sales, commercial, procurement and marketing across public sector, I&C, grid scale and emerging technology projects.]]',
+  // Headline figures. Values are placeholders until Martyn confirms them.
+  metrics: [
+    { value: '30', unit: 'yrs', label: 'Sales and commercial leadership' },
+    { value: '15', unit: 'yrs', label: 'In the energy sector' },
+    { value: '[[£000]]', unit: 'm', label: '[[Contract value secured, to confirm]]' },
+    { value: '[[00]]', unit: '%', label: '[[Bid win rate, to confirm]]' },
+  ],
+  sectors: ['Public sector', 'Industrial & commercial', 'Grid scale', 'Emerging technologies', 'Decarbonisation'],
+  capabilities: [
+    {
+      code: 'S',
+      title: 'Sales leadership',
+      line: 'Building pipeline, running bids and closing at board level.',
+      points: ['[[Pipeline built and qualified against clear criteria]]', '[[Framework and direct-award public sector bids]]', '[[Senior stakeholder and board-level selling]]'],
+    },
+    {
+      code: 'C',
+      title: 'Commercial',
+      line: 'Deal structure, risk and margin, so contracts work for both sides.',
+      points: ['[[Contract structures: EPC, energy performance, PPAs]]', '[[Pricing, risk allocation and margin protection]]', '[[Negotiation through to financial close]]'],
+    },
+    {
+      code: 'P',
+      title: 'Procurement',
+      line: 'Supply chain strategy that protects programme and price.',
+      points: ['[[Supplier selection and framework management]]', '[[Cost certainty on capital projects]]', '[[Compliance with public procurement rules]]'],
+    },
+    {
+      code: 'M',
+      title: 'Marketing',
+      line: 'Positioning and campaigns that put the business in the room early.',
+      points: ['[[Proposition and market positioning]]', '[[Campaigns that feed the sales pipeline]]', '[[Thought leadership and events]]'],
+    },
+  ],
+  approach: [
+    { step: 'Qualify', text: '[[Is there a real need, budget and route to contract? If not, walk away early.]]' },
+    { step: 'Shape', text: '[[Work the problem with the client before the tender lands, so the spec reflects what works.]]' },
+    { step: 'Propose', text: '[[A clear commercial offer: what it costs, what it saves, who carries which risk.]]' },
+    { step: 'Negotiate', text: '[[Trade, do not concede. Protect margin and the relationship together.]]' },
+    { step: 'Deliver', text: '[[Hand over cleanly to delivery and stay close enough to win the next one.]]' },
   ],
   aboutTeaser:
-    '[[A short, natural paragraph about how Martyn works and what he is interested in. To be written with Martyn. No family details or home address.]]',
+    '[[A short, direct paragraph on how Martyn works with boards and leadership teams. To be written with Martyn.]]',
 };
 
 export const about = {
@@ -49,6 +85,7 @@ export type ExperienceEntry = {
   role: string;
   org: string;
   summary: string;
+  wins: string[];
 };
 
 export const experience: ExperienceEntry[] = [
@@ -58,24 +95,28 @@ export const experience: ExperienceEntry[] = [
     org: 'Ameresco UK',
     summary:
       '[[Scope of the role in one or two sentences: sales, commercial, procurement and marketing across public sector, I&C, grid scale and emerging sector projects. Confirm wording.]]',
+    wins: ['[[Key result with a number, to confirm]]', '[[Second key result, to confirm]]'],
   },
   {
     period: '[[Years]]',
     role: '[[Role]]',
     org: '[[Employer]]',
     summary: '[[One line on scope and one notable result. To confirm.]]',
+    wins: ['[[Key result with a number, to confirm]]', '[[Second key result, to confirm]]'],
   },
   {
     period: '[[Years]]',
     role: '[[Role]]',
     org: '[[Employer]]',
     summary: '[[One line on scope and one notable result. To confirm.]]',
+    wins: ['[[Key result with a number, to confirm]]', '[[Second key result, to confirm]]'],
   },
   {
     period: '[[Years]]',
     role: '[[Earlier roles, grouped]]',
     org: '[[Employers]]',
     summary: '[[Optional grouped line for the early career.]]',
+    wins: ['[[Key result with a number, to confirm]]', '[[Second key result, to confirm]]'],
   },
 ];
 

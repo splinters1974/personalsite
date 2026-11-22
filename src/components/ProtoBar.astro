@@ -3,16 +3,20 @@
 ---
 <div class="proto" role="note">
   <div class="wrap">
-    <strong>Prototype for review.</strong>
-    Text <mark class="tbc">highlighted like this</mark> is placeholder and needs your confirmation.
+    <strong>Prototype v2</strong>
+    <span>Text <span class="tbc">marked like this</span> is placeholder to confirm.</span>
+    <button type="button" data-tbc-toggle aria-pressed="false">Hide marks</button>
     <a href="/review/">Review notes</a>
-    <a href="/admin/">Admin concept</a>
-    <a href="/access/demo/">Private access concept</a>
+    <a href="/admin/">Admin</a>
+    <a href="/access/demo/">Private access</a>
   </div>
 </div>
 <style>
-  .proto { background: var(--ink); color: #e9e6df; font-size: 0.8rem; padding-block: 0.45rem; }
-  .proto .wrap { display: flex; flex-wrap: wrap; gap: 0.35rem 1rem; align-items: baseline; }
-  .proto a { color: #fff; }
-  .proto strong { font-weight: 600; }
+  .proto { background: #050b16; color: #c0c8d6; font: 400 0.75rem/1.4 var(--font-mono); padding-block: 0.4rem; }
+  .proto .wrap { display: flex; flex-wrap: wrap; gap: 0.3rem 1rem; align-items: center; }
+  .proto a { color: #fff; text-decoration-color: #ff4d5e; }
+  .proto strong { color: #ff4d5e; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; }
+  .proto .tbc { text-decoration-color: #ff6b79; background: rgba(255, 77, 94, 0.15); }
+  .proto button { background: none; border: 1px solid #3a4a66; color: #fff; padding: 0.15rem 0.5rem; cursor: pointer; border-radius: 2px; font: inherit; }
+  .proto button[aria-pressed='true'] { background: #ff4d5e; color: #050b16; border-color: #ff4d5e; }
 </style>

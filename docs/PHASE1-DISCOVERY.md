@@ -1,6 +1,6 @@
 # Phase 1 discovery and Phase 2 prototype
 
-Version 0.1, 22 November 2026. For Martyn's review. Nothing in the backend has been built yet. The brief asks for a stop here until the design is approved.
+Version 0.2, 22 November 2026. For Martyn's review. Nothing in the backend has been built yet. The brief asks for a stop here until the design is approved.
 
 ## What you need to decide
 
@@ -10,20 +10,16 @@ Version 0.1, 22 November 2026. For Martyn's review. Nothing in the backend has b
 4. **Content.** I need your LinkedIn URL, a photograph, confirmed career entries and project descriptions. Everything highlighted yellow in the prototype is a placeholder.
 5. **Previous sites.** I have not seen UK Solar Calculator, HH Insights or Tiger. Send screenshots or URLs so I can check the new site doesn't repeat their patterns.
 
-## Design direction
+## Design direction (v2, boardroom)
 
-An editorial layout rather than a landing page. The idea is a well-set printed CV crossed with a magazine contents page.
+Revised after your feedback that v1 was too middle of the road. The site now pitches commercial capability to a senior audience.
 
-- **Type.** Newsreader (a serif with optical sizing, made for reading on screen) for headings and the large name. Hanken Grotesk (a plain, legible sans) for body text and interface. Both are open licence and served from the site itself, so there are no Google Fonts calls and no third-party cookies.
-- **Colour.** Warm white paper (#FAF8F4), near-black ink (#17191D), one navy accent (#1F3A5F). No gradients, no glow, no icons. All text pairs pass WCAG AA contrast.
-- **Structure.** Thin rules and ledgers instead of cards. The homepage uses a definition list ("In brief") and a numbered project index. Projects are a table on desktop and stacked records on mobile.
-- **Variation.** Project pages have two layouts, chosen per project in admin. *Feature* has a large screenshot with facts beside the text. *Notes* is narrow and long-form, with facts across the top. This stops every detail page looking identical.
-- **Photo.** Small and on About only, plus a small version in the homepage About section. No hero portrait.
-- **Mobile.** The navigation stays visible as a row (no hamburger menu). Ledgers collapse to label-over-value. Tables become records.
-- **Motion.** Colour and underline transitions only, and only when the visitor hasn't asked for reduced motion.
-- **Employer separation.** A footer line on every page says independent projects are not affiliated with or endorsed by Ameresco.
-
-References borrowed in principle only: the restraint and big type of gabrielvaldivia.com, the mix of project kinds on vanschneider.com, the clear sorting of perell.com.
+- **Colour.** Deep navy (#08111F to #13294B) with a signal red (#B3122E in light mode, #FF4D5E in dark mode). Dark and light modes follow the visitor's system setting, with a toggle in the header. The hero and footer stay dark in both modes, so every page opens and closes with weight.
+- **Type.** Archivo, a grotesque with a variable width axis. Headlines run at its widest, heaviest setting, which looks engineered and confident, not like a template. Body text uses the same family at normal width for consistency. IBM Plex Mono handles labels and figures, giving a data-sheet feel. All fonts are served from the site itself.
+- **Homepage structure.** A sales argument in order: positioning headline and headline figures, the sectors you work in, four capability areas (sales, commercial, procurement, marketing), your sales process as five steps, your independent tools ("Built, not just sold"), About, then a "Start a conversation" close on every page.
+- **Proof, not claims.** The headline figures and key results per role are placeholders until you give real numbers. I won't invent figures or testimonials.
+- **Employer separation.** The call to action is a conversation, not "hire me", and a footer line on every page says independent projects aren't affiliated with or endorsed by Ameresco.
+- **Accessibility.** All text pairs pass WCAG AA in both modes, focus states are visible, and motion is limited to hover details and respects reduced-motion settings.
 
 ## Sitemap
 

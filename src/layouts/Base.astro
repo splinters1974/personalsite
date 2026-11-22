@@ -31,7 +31,8 @@ const canonical = new URL(Astro.url.pathname, site.url).href;
     <meta property="og:description" content={desc} />
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content="en_GB" />
-    <meta name="theme-color" content="#faf8f4" />
+    <meta name="theme-color" content="#08111f" />
+    <script is:inline src="/theme.js"></script>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     {jsonld && <script type="application/ld+json" set:html={JSON.stringify(jsonld)} />}
   </head>

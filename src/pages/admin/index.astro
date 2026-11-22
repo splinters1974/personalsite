@@ -81,12 +81,13 @@ const usedGb = 1.4, capGb = 10;
   .stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--s-3); margin: 0 0 var(--s-5); }
   .stats div { border: 1px solid var(--rule); border-radius: var(--radius); padding: var(--s-4); }
   .stats dt { font-size: var(--step--1); color: var(--ink-3); }
-  .stats dd { margin: 0; font-family: var(--font-display); font-size: var(--step-3); line-height: 1.1; }
+  .stats dd { margin: 0; font: 800 var(--step-3)/1.1 var(--font-display); font-stretch: 125%; }
+  .stats div:first-child { border-top: 3px solid var(--red); }
   .two { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-5); }
-  .big { font-family: var(--font-display); font-size: var(--step-2); margin-bottom: var(--s-3); }
+  .big { font-family: var(--font-display); font-weight: 720; font-stretch: 125%; letter-spacing: -0.015em; font-size: var(--step-2); margin-bottom: var(--s-3); }
   .big .muted { font-family: var(--font-text); font-size: var(--step--1); }
   .ok { color: var(--ok); }
-  .meter { display: block; width: 100%; height: 10px; margin-bottom: var(--s-3); accent-color: var(--navy); }
+  .meter { display: block; width: 100%; height: 10px; margin-bottom: var(--s-3); accent-color: var(--red); }
   .log { list-style: none; margin: 0; padding: 0; font-size: 0.92rem; }
   .log li { padding-block: var(--s-2); border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 6.5rem 1fr; gap: var(--s-3); }
   @media (max-width: 52rem) { .stats { grid-template-columns: repeat(3, 1fr); } .two { grid-template-columns: 1fr; gap: 0; } }

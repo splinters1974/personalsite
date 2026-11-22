@@ -7,7 +7,7 @@ export function tbc(text: string): string {
     .replace(/"/g, '&quot;');
   return esc.replace(
     /\[\[(.+?)\]\]/g,
-    '<mark class="tbc" title="Placeholder: to confirm">$1</mark>',
+    '<span class="tbc" title="Placeholder: to confirm">$1</span>',
   );
 }
 

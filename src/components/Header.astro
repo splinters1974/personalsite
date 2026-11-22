@@ -1,16 +1,19 @@
 ---
+import ThemeToggle from './ThemeToggle.astro';
 const path = Astro.url.pathname;
 const links = [
   { href: '/about/', label: 'About' },
-  { href: '/experience/', label: 'Experience' },
+  { href: '/experience/', label: 'Track record' },
   { href: '/projects/', label: 'Projects' },
-  { href: '/contact/', label: 'Contact' },
 ];
-const isCurrent = (href: string) => path === href || (href !== '/' && path.startsWith(href));
+const isCurrent = (href: string) => path.startsWith(href);
 ---
 <header class="site-header">
   <div class="wrap bar">
-    <a class="mark" href="/" aria-current={path === '/' ? 'page' : undefined}>Martyn Sheridan</a>
+    <a class="mark" href="/" aria-label="Martyn Sheridan, home">
+      <span class="mono" aria-hidden="true">MS</span>
+      <span class="word">Martyn Sheridan</span>
+    </a>
     <nav aria-label="Main">
       <ul>
         {links.map((l) => (
@@ -18,32 +21,30 @@ const isCurrent = (href: string) => path === href || (href !== '/' && path.start
         ))}
       </ul>
     </nav>
+    <div class="tools">
+      <ThemeToggle />
+      <a class="btn cta" href="/contact/" aria-current={path.startsWith('/contact/') ? 'page' : undefined}>Contact</a>
+    </div>
   </div>
 </header>
 
 <style>
-  .site-header { border-bottom: 1px solid var(--rule); }
-  .bar {
-    display: flex; align-items: baseline; justify-content: space-between;
-    gap: var(--s-5); padding-block: var(--s-5);
-  }
-  .mark {
-    font-family: var(--font-display); font-size: var(--step-1);
-    font-weight: 500; color: var(--ink); text-decoration: none; letter-spacing: -0.005em;
-  }
-  ul { list-style: none; display: flex; gap: clamp(var(--s-4), 2.5vw, var(--s-6)); margin: 0; padding: 0; }
-  nav a {
-    color: var(--ink-2); text-decoration: none; font-size: var(--step--1);
-    font-weight: 520; letter-spacing: 0.02em; padding-block: var(--s-2);
-    border-bottom: 1px solid transparent;
-  }
+  .site-header { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--rule); }
+  .bar { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: var(--s-6); padding-block: var(--s-3); }
+  .mark { display: inline-flex; align-items: center; gap: var(--s-3); text-decoration: none; color: var(--ink); }
+  .mono { display: grid; place-items: center; width: 2.4rem; height: 2.4rem; background: var(--red); color: var(--red-ink); font: 800 0.95rem/1 var(--font-display); font-stretch: 125%; letter-spacing: -0.02em; }
+  .word { font: 760 0.95rem/1 var(--font-display); font-stretch: 125%; text-transform: uppercase; letter-spacing: 0.04em; }
+  nav ul { list-style: none; display: flex; justify-content: flex-end; gap: clamp(var(--s-4), 2.5vw, var(--s-6)); margin: 0; padding: 0; }
+  nav a { font: 560 var(--step--1)/1 var(--font-text); color: var(--ink-2); text-decoration: none; padding-block: var(--s-2); border-bottom: 2px solid transparent; }
   nav a:hover { color: var(--ink); border-bottom-color: var(--rule-strong); }
-  nav a[aria-current='page'] { color: var(--navy); border-bottom-color: var(--navy); }
+  nav a[aria-current='page'] { color: var(--ink); border-bottom-color: var(--red); }
+  .tools { display: flex; gap: var(--s-3); align-items: center; }
+  .cta { padding: 0.8em 1.1em; }
 
-  /* Mobile: name on its own line, nav as a full-width row beneath (no hidden menu) */
-  @media (max-width: 34rem) {
-    .bar { flex-direction: column; gap: var(--s-2); padding-block: var(--s-4) var(--s-2); }
-    ul { width: 100%; justify-content: space-between; }
-    nav { width: 100%; }
+  @media (max-width: 52rem) {
+    .bar { grid-template-columns: 1fr auto; row-gap: var(--s-2); }
+    nav { grid-column: 1 / -1; grid-row: 2; }
+    nav ul { justify-content: flex-start; }
   }
+  @media (max-width: 26rem) { .word { font-size: 0.8rem; } }
 </style>

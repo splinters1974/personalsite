@@ -20,13 +20,13 @@ const { heading, intro, field } = Astro.props;
 </div>
 <style>
   .gate { min-height: 80vh; display: flex; flex-direction: column; padding-block: var(--s-6); }
-  .home { font-family: var(--font-display); font-size: var(--step-1); color: var(--ink); text-decoration: none; }
+  .home { font: 760 0.95rem/1 var(--font-display); font-stretch: 125%; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink); text-decoration: none; border-left: 4px solid var(--red); padding-left: var(--s-3); }
   .panel { margin-block: auto; max-width: 28rem; padding-block: var(--s-8); }
   h1 { font-size: var(--step-3); margin: var(--s-3) 0 var(--s-4); }
   .form { display: grid; gap: var(--s-3); margin-top: var(--s-6); }
   label { font-weight: 560; font-size: var(--step--1); }
-  input { padding: 0.75em 0.9em; border: 1px solid var(--rule-strong); border-radius: var(--radius); background: #fff; }
-  input:focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; border-color: var(--navy); }
+  input { padding: 0.75em 0.9em; border: 1px solid var(--rule-strong); border-radius: var(--radius); background: var(--surface); }
+  input:focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; border-color: var(--red); }
   .btn { justify-self: start; margin-top: var(--s-2); }
   .small { font-size: var(--step--1); }
 </style>

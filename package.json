@@ -11,8 +11,10 @@
     "preview:static": "astro build && node scripts/relativise.mjs dist dist-preview"
   },
   "dependencies": {
+    "@fontsource-variable/archivo": "^5.3.0",
     "@fontsource-variable/hanken-grotesk": "^5.2.8",
     "@fontsource-variable/newsreader": "^5.2.10",
+    "@fontsource/ibm-plex-mono": "^5.3.0",
     "astro": "^5.18.2"
   },
   "devDependencies": {

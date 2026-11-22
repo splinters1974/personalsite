@@ -3,10 +3,10 @@ import Base from '../layouts/Base.astro';
 import T from '../components/T.astro';
 import { experience, qualifications } from '../data/site';
 ---
-<Base title="Experience" description="Selected career summary for Martyn Sheridan, Commercial & Sales Director at Ameresco UK.">
+<Base title="Track record" description="Selected career summary for Martyn Sheridan, Commercial & Sales Director at Ameresco UK.">
   <div class="wrap exp">
     <header class="head">
-      <p class="label">Experience</p>
+      <p class="label kicker">Track record</p>
       <h1>Around thirty years in sales and commercial roles, fifteen of them in energy.</h1>
       <p class="lede">A selective summary. The full history is on <a href="/contact/">LinkedIn</a>.</p>
     </header>
@@ -19,6 +19,7 @@ import { experience, qualifications } from '../data/site';
             <h2><T text={e.role} /></h2>
             <T text={e.org} as="p" class="org" />
             <T text={e.summary} as="p" class="muted summary" />
+            <ul class="wins">{e.wins.map((w) => <li><T text={w} /></li>)}</ul>
           </div>
         </li>
       ))}
@@ -34,16 +35,20 @@ import { experience, qualifications } from '../data/site';
   .exp { padding-top: var(--s-8); }
   .head { max-width: 50rem; margin-bottom: var(--s-8); }
   .head .label { margin-bottom: var(--s-4); }
-  h1 { font-size: var(--step-4); font-weight: 380; letter-spacing: -0.02em; margin-bottom: var(--s-5); }
-  .timeline { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ink); }
-  .timeline li { display: grid; grid-template-columns: 14rem 1fr; gap: var(--s-5); padding-block: var(--s-6); border-bottom: 1px solid var(--rule); }
+  h1 { font-size: var(--step-4); letter-spacing: -0.02em; margin-bottom: var(--s-5); }
+  .timeline { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--rule-strong); }
+  .timeline > li { display: grid; grid-template-columns: 14rem 1fr; gap: var(--s-5); padding-block: var(--s-6); border-bottom: 1px solid var(--rule); }
   .period { color: var(--ink-3); font-size: var(--step--1); font-variant-numeric: tabular-nums; padding-top: 0.4rem; }
   .timeline h2 { font-size: var(--step-2); }
   .org { font-weight: 560; margin: var(--s-1) 0 var(--s-3); }
   .summary { max-width: var(--measure); }
+  .wins { list-style: none; padding: 0; margin: var(--s-4) 0 0; display: grid; gap: var(--s-2); font-size: var(--step--1); }
+  .wins li { display: grid; grid-template-columns: 0.9rem 1fr; gap: var(--s-2); }
+  .wins li::before { content: ''; width: 0.6rem; height: 2px; background: var(--red); margin-top: 0.7em; }
+  .timeline h2 { font-size: var(--step-2); }
   .quals { display: grid; grid-template-columns: 14rem 1fr; gap: var(--s-5); padding-top: var(--s-7); }
   .quals ul { margin: 0; padding-left: 1.1em; }
   @media (max-width: 40rem) {
-    .timeline li, .quals { grid-template-columns: 1fr; gap: var(--s-2); }
+    .timeline > li, .quals { grid-template-columns: 1fr; gap: var(--s-2); }
   }
 </style>

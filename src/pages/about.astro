@@ -6,7 +6,7 @@ import { about } from '../data/site';
 <Base title="About" description="About Martyn Sheridan: commercial leadership in the energy sector and independent digital projects.">
   <article class="wrap about">
     <header class="head">
-      <p class="label">About</p>
+      <p class="label kicker">About</p>
       <h1>Commercial work, energy, and building things that are useful.</h1>
     </header>
     <figure class="portrait">
@@ -30,14 +30,14 @@ import { about } from '../data/site';
   .about { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--s-5); padding-top: var(--s-8); }
   .head { grid-column: 1 / 10; margin-bottom: var(--s-7); }
   .head .label { margin-bottom: var(--s-4); }
-  h1 { font-size: var(--step-4); font-weight: 380; letter-spacing: -0.02em; }
+  h1 { font-size: var(--step-4); letter-spacing: -0.02em; }
   .portrait { grid-column: 1 / 4; margin: 0; position: sticky; top: var(--s-5); align-self: start; }
   .portrait .placeholder-img { aspect-ratio: 4 / 5; }
   .portrait figcaption { margin-top: var(--s-2); }
   .body { grid-column: 5 / 12; max-width: var(--measure); }
   .sub { margin-top: var(--s-7); margin-bottom: var(--s-3); }
   .interests { list-style: none; padding: 0; margin: 0 0 var(--s-6); border-top: 1px solid var(--rule); }
-  .interests li { padding-block: var(--s-3); border-bottom: 1px solid var(--rule); font-family: var(--font-display); font-size: var(--step-1); }
+  .interests li { padding-block: var(--s-3); border-bottom: 1px solid var(--rule); font-family: var(--font-display); font-weight: 720; font-stretch: 125%; letter-spacing: -0.015em; font-size: var(--step-1); }
   .aside { font-size: var(--step--1); }
   @media (max-width: 48rem) {
     .head, .body { grid-column: 1 / -1; }
